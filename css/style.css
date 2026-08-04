@@ -1157,6 +1157,8 @@ a.meta-right:hover { color: var(--blue); }
   .about-copy { border-right: 0; border-bottom: 1px solid var(--ink); }
   .book-intro { border-bottom: 1px solid var(--ink); }
 
+  .grid-2 { border-top: 1px solid var(--ink); }
+
   .grid-2 .offer-card,
   .grid-3 .teach-card {
     border-right: 0 !important;
@@ -1176,6 +1178,7 @@ a.meta-right:hover { color: var(--blue); }
 
   .process-row { flex-wrap: wrap; gap: 8px 20px; }
   .process-num { width: auto; font-size: 34px; }
+  .process-copy h3 { white-space: normal; }
 
   .hero-portrait { display: none; }
 
