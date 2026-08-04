@@ -192,15 +192,17 @@
       </div>
 
       <div class="book-form-panel pad-lg" data-booking-form>
-        <form class="booking-form" action="https://formspree.io/f/myeggnpv" method="POST">
+        <form class="booking-form" action="https://formspree.io/f/myeggnpv" method="POST" novalidate>
           <div class="field">
             <label for="bk-name">Full name</label>
             <input id="bk-name" name="name" type="text" required placeholder="Your name">
+            <span class="field-error"></span>
           </div>
           <div class="field-row">
             <div class="field">
               <label for="bk-email">Work email</label>
               <input id="bk-email" name="email" type="email" required placeholder="you@company.com">
+              <span class="field-error"></span>
             </div>
             <div class="field">
               <label for="bk-org">Organisation</label>
@@ -222,6 +224,7 @@
           <div class="field">
             <label for="bk-note">What specifically should this session cover?</label>
             <textarea id="bk-note" name="challenge" rows="5" required placeholder="Name one concrete topic — e.g. 'review our checkout funnel' or 'coach our team on design critique' — plus a preferred day/time window."></textarea>
+            <span class="field-error"></span>
           </div>
           <div class="form-error"></div>
           <div class="form-footer">

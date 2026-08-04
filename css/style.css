@@ -920,6 +920,23 @@ a.meta-right:hover { color: var(--blue); }
   background: rgba(255, 212, 0, 0.16);
 }
 
+.field.has-error input,
+.field.has-error textarea {
+  border-color: var(--ink);
+  border-bottom-width: 2px;
+}
+.field.has-error textarea { border-width: 2px; }
+
+.field-error {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  color: var(--ink);
+}
+.field-error.is-visible { display: block; }
+
 .field-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
 
 .topics-label {

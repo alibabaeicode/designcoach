@@ -23,6 +23,28 @@ function initNav() {
   });
 }
 
+function fieldErrorMessage(field) {
+  if (field.validity.valueMissing) return "This field is required.";
+  if (field.validity.typeMismatch) return "Enter a valid email address.";
+  return "Please check this field.";
+}
+
+function validateField(field) {
+  const wrapper = field.closest(".field");
+  const errorEl = wrapper && wrapper.querySelector(".field-error");
+  if (field.validity.valid) {
+    if (wrapper) wrapper.classList.remove("has-error");
+    if (errorEl) errorEl.classList.remove("is-visible");
+    return true;
+  }
+  if (wrapper) wrapper.classList.add("has-error");
+  if (errorEl) {
+    errorEl.textContent = fieldErrorMessage(field);
+    errorEl.classList.add("is-visible");
+  }
+  return false;
+}
+
 function initBookingForms() {
   document.querySelectorAll("[data-booking-form]").forEach((wrapper) => {
     const form = wrapper.querySelector("form");
@@ -32,6 +54,7 @@ function initBookingForms() {
     const topicsHidden = form.querySelector('input[name="topics"]');
     const chips = wrapper.querySelectorAll(".topic-chip");
     const submitBtn = form.querySelector('button[type="submit"]');
+    const requiredFields = Array.from(form.querySelectorAll("[required]"));
 
     const selected = new Set();
 
@@ -49,9 +72,28 @@ function initBookingForms() {
       });
     });
 
+    requiredFields.forEach((field) => {
+      field.addEventListener("blur", () => validateField(field));
+      field.addEventListener("input", () => {
+        const wrapper = field.closest(".field");
+        if (wrapper && wrapper.classList.contains("has-error")) validateField(field);
+      });
+    });
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       errorBox.classList.remove("is-visible");
+
+      let firstInvalid = null;
+      requiredFields.forEach((field) => {
+        const valid = validateField(field);
+        if (!valid && !firstInvalid) firstInvalid = field;
+      });
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
       submitBtn.disabled = true;
 
       fetch(form.action, {
@@ -83,6 +125,12 @@ function initBookingForms() {
         selected.clear();
         chips.forEach((c) => c.classList.remove("is-selected"));
         if (topicsHidden) topicsHidden.value = "";
+        requiredFields.forEach((field) => {
+          const fieldWrapper = field.closest(".field");
+          if (fieldWrapper) fieldWrapper.classList.remove("has-error");
+          const errorEl = fieldWrapper && fieldWrapper.querySelector(".field-error");
+          if (errorEl) errorEl.classList.remove("is-visible");
+        });
         form.hidden = false;
         success.classList.remove("is-visible");
       });
