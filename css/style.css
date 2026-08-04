@@ -732,15 +732,18 @@ a.meta-right:hover { color: var(--blue); }
 .consulting-cell {
   padding: 26px 30px;
   border-bottom: 1px solid var(--ink);
+  border-right: 1px solid var(--ink);
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+.consulting-grid > .consulting-cell:nth-child(2n) { border-right: 0; }
 
 /* An odd total count leaves the last cell alone in the final row —
    span it full-width so its divider isn't a half-width dangling line. */
 .consulting-grid > .consulting-cell:nth-child(odd):last-child {
   grid-column: 1 / -1;
+  border-right: 0;
 }
 
 .consulting-cell .client-line {
@@ -1209,6 +1212,8 @@ a.meta-right:hover { color: var(--blue); }
 
   .article-card { border-right: 0 !important; border-bottom: 1px solid var(--ink); }
   .writing-grid > .article-card:last-child { border-bottom: 0; }
+
+  .consulting-cell { border-right: 0 !important; }
 
   .process-row { flex-wrap: wrap; gap: 8px 20px; }
   .process-num { width: auto; font-size: 34px; }
