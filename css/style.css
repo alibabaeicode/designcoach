@@ -152,7 +152,7 @@ img { max-width: 100%; display: block; }
 
 main { flex: 1; }
 
-.hero-grid, .about-grid, .book-grid, .services-hero, .grid-2, .grid-3, .pillars-grid { display: grid; }
+.hero-grid, .about-grid, .book-grid, .services-hero, .grid-2, .grid-3, .pillars-grid, .consulting-grid, .writing-grid { display: grid; }
 
 /* ---------- Home: hero ---------- */
 
@@ -764,42 +764,6 @@ a.meta-right:hover { color: var(--blue); }
   color: var(--body-copy);
 }
 
-.row-list {
-  border-left: 1px solid var(--ink);
-  border-right: 1px solid var(--ink);
-}
-
-.roles-row {
-  display: grid;
-  grid-template-columns: 180px 1fr 1.2fr;
-  gap: 24px;
-  padding: 22px 30px;
-  border-bottom: 1px solid var(--ink);
-  align-items: baseline;
-}
-
-.roles-row--2col { grid-template-columns: 180px 1fr; }
-
-.roles-row .years {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-}
-
-.roles-row .org {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 19px;
-}
-
-.roles-row .role,
-.roles-row .note {
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--body-copy);
-}
-
 /* ---------- Writing ---------- */
 
 .writing-grid {
@@ -1178,7 +1142,7 @@ a.meta-right:hover { color: var(--blue); }
   .nav-links.nav-open { display: flex; }
   .nav-toggle { display: flex; }
 
-  .hero-grid, .grid-2, .about-grid, .book-grid, .services-hero, .grid-3, .pillars-grid {
+  .hero-grid, .grid-2, .about-grid, .book-grid, .services-hero, .grid-3, .pillars-grid, .consulting-grid, .writing-grid {
     grid-template-columns: 1fr !important;
   }
 
@@ -1199,14 +1163,6 @@ a.meta-right:hover { color: var(--blue); }
   }
   .pillar-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--ink); }
   .pillar-card:last-child { border-bottom: 0; }
-
-  .consulting-cell,
-  .roles-row { }
-
-  .roles-row {
-    grid-template-columns: 1fr !important;
-    gap: 6px !important;
-  }
 
   .article-card { border-right: 0 !important; border-bottom: 1px solid var(--ink); }
   .writing-grid > .article-card:last-child { border-bottom: 0; }
