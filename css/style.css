@@ -967,7 +967,9 @@ a.meta-right:hover { color: var(--blue); }
   text-transform: uppercase;
   cursor: pointer;
 }
-.topic-chip:hover { background: var(--yellow); }
+@media (hover: hover) {
+  .topic-chip:hover { background: var(--yellow); }
+}
 .topic-chip.is-selected { background: var(--yellow); font-weight: 500; }
 
 .field textarea {
