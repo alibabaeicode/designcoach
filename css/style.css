@@ -736,6 +736,12 @@ a.meta-right:hover { color: var(--blue); }
   gap: 8px;
 }
 
+/* An odd total count leaves the last cell alone in the final row —
+   span it full-width so its divider isn't a half-width dangling line. */
+.consulting-grid > .consulting-cell:nth-child(odd):last-child {
+  grid-column: 1 / -1;
+}
+
 .consulting-cell .client-line {
   display: flex;
   align-items: baseline;
