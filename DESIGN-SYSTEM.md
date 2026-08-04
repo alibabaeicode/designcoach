@@ -91,7 +91,7 @@ Every grid container that should render as columns must be in the shared `displa
 `.hero-grid` `.about-grid` `.book-grid` `.services-hero` `.grid-2` `.grid-3` `.pillars-grid` `.consulting-grid` `.writing-grid` `.stats-grid` `.pad-lg` `.nav-links` `.nav-toggle`
 
 Breakpoints:
-- **900px**: all grid classes above collapse to 1 column; nav collapses to hamburger; side padding tightens to 20px; hero portrait hidden (`.hero-portrait { display: none; }`, About's `.about-portrait` stays visible); `stats-grid` goes 4→2 columns; `.grid-2` gains an explicit `border-top` + `28px` margin-top since its box no longer sits directly under a bordered header on narrow layouts.
+- **900px**: all grid classes above collapse to 1 column; nav collapses to hamburger; side padding tightens to 20px; hero portrait hidden (`.hero-portrait { display: none; }`, About's `.about-portrait` stays visible); the booking panel's email link (`.book-email`) is also hidden at this breakpoint (visible on desktop/tablet); `stats-grid` goes 4→2 columns; `.grid-2` gains an explicit `border-top` + `28px` margin-top since its box no longer sits directly under a bordered header on narrow layouts.
 - **560px**: `.stats-grid` goes 2→1 columns.
 
 ## Pages & sections (current inventory)
