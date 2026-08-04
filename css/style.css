@@ -876,14 +876,6 @@ a.meta-right:hover { color: var(--blue); }
 }
 .book-points li span { color: var(--yellow); flex-shrink: 0; }
 
-.book-email {
-  margin-top: auto;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--yellow);
-}
-
 .book-form-panel {
   padding: 76px 40px;
   background: var(--cream);
