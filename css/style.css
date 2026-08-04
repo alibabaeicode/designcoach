@@ -1157,7 +1157,7 @@ a.meta-right:hover { color: var(--blue); }
 
 @media (max-width: 900px) {
   .nav-links {
-    display: none;
+    display: flex;
     position: absolute;
     top: 100%;
     left: 0;
@@ -1168,8 +1168,19 @@ a.meta-right:hover { color: var(--blue); }
     align-items: flex-start;
     padding: 20px 24px;
     gap: 18px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
   }
-  .nav-links.nav-open { display: flex; }
+  .nav-links.nav-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
   .nav-toggle { display: flex; }
 
   .hero-grid, .grid-2, .about-grid, .book-grid, .services-hero, .grid-3, .pillars-grid, .consulting-grid, .writing-grid {
@@ -1221,4 +1232,8 @@ a.meta-right:hover { color: var(--blue); }
   .stats-grid { grid-template-columns: 1fr; }
   .stat-cell { border-right: 0; border-bottom: 1px solid var(--hairline-dark); }
   .stat-cell:last-child { border-bottom: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-links { transition: none; }
 }
