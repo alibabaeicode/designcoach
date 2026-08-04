@@ -23,26 +23,56 @@ function initNav() {
   });
 }
 
-function fieldErrorMessage(field) {
-  if (field.validity.valueMissing) return "This field is required.";
-  if (field.validity.typeMismatch) return "Enter a valid email address.";
-  return "Please check this field.";
+function showValidatorError(v) {
+  if (v.wrapper) v.wrapper.classList.add("has-error");
+  if (v.errorEl) {
+    v.errorEl.textContent = v.message();
+    v.errorEl.classList.add("is-visible");
+  }
 }
 
-function validateField(field) {
-  const wrapper = field.closest(".field");
-  const errorEl = wrapper && wrapper.querySelector(".field-error");
-  if (field.validity.valid) {
-    if (wrapper) wrapper.classList.remove("has-error");
-    if (errorEl) errorEl.classList.remove("is-visible");
-    return true;
+function clearValidatorError(v) {
+  if (v.wrapper) v.wrapper.classList.remove("has-error");
+  if (v.errorEl) v.errorEl.classList.remove("is-visible");
+}
+
+function buildValidators(form, topicsHidden) {
+  const validators = [];
+
+  form.querySelectorAll("[required]").forEach((field) => {
+    validators.push({
+      focusEl: field,
+      wrapper: field.closest(".field"),
+      errorEl: field.closest(".field") && field.closest(".field").querySelector(".field-error"),
+      isValid: () => field.validity.valid,
+      message: () => {
+        if (field.validity.typeMismatch) {
+          return field.dataset.invalidMessage || "Please enter a valid value.";
+        }
+        return field.dataset.requiredMessage || "This field is required.";
+      },
+    });
+  });
+
+  const topicsGroup = form.querySelector("[data-topics-group]");
+  if (topicsGroup) {
+    const wrapper = topicsGroup.closest(".field");
+    validators.push({
+      focusEl: topicsGroup.querySelector(".topic-chip"),
+      wrapper,
+      errorEl: wrapper && wrapper.querySelector(".field-error"),
+      isValid: () => !!(topicsHidden && topicsHidden.value.trim()),
+      message: () => "Please select at least one topic.",
+    });
   }
-  if (wrapper) wrapper.classList.add("has-error");
-  if (errorEl) {
-    errorEl.textContent = fieldErrorMessage(field);
-    errorEl.classList.add("is-visible");
-  }
-  return false;
+
+  // Keep validators in document order so "first invalid" matches reading order.
+  validators.sort((a, b) => {
+    const posA = a.focusEl.compareDocumentPosition(b.focusEl);
+    return posA & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+  });
+
+  return validators;
 }
 
 function initBookingForms() {
@@ -54,7 +84,8 @@ function initBookingForms() {
     const topicsHidden = form.querySelector('input[name="topics"]');
     const chips = wrapper.querySelectorAll(".topic-chip");
     const submitBtn = form.querySelector('button[type="submit"]');
-    const requiredFields = Array.from(form.querySelectorAll("[required]"));
+    const validators = buildValidators(form, topicsHidden);
+    const topicsValidator = validators.find((v) => v.focusEl && v.focusEl.classList && v.focusEl.classList.contains("topic-chip"));
 
     const selected = new Set();
 
@@ -69,28 +100,31 @@ function initBookingForms() {
           chip.classList.add("is-selected");
         }
         if (topicsHidden) topicsHidden.value = Array.from(selected).join(", ");
+        if (topicsValidator && topicsValidator.isValid()) clearValidatorError(topicsValidator);
       });
     });
 
-    requiredFields.forEach((field) => {
-      field.addEventListener("blur", () => validateField(field));
-      field.addEventListener("input", () => {
-        const wrapper = field.closest(".field");
-        if (wrapper && wrapper.classList.contains("has-error")) validateField(field);
+    validators.forEach((v) => {
+      if (v === topicsValidator) return;
+      v.focusEl.addEventListener("blur", () => {
+        if (v.isValid()) clearValidatorError(v);
+        else showValidatorError(v);
+      });
+      v.focusEl.addEventListener("input", () => {
+        if (v.wrapper && v.wrapper.classList.contains("has-error") && v.isValid()) clearValidatorError(v);
       });
     });
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       errorBox.classList.remove("is-visible");
+      validators.forEach(clearValidatorError);
 
-      let firstInvalid = null;
-      requiredFields.forEach((field) => {
-        const valid = validateField(field);
-        if (!valid && !firstInvalid) firstInvalid = field;
-      });
+      const firstInvalid = validators.find((v) => !v.isValid());
       if (firstInvalid) {
-        firstInvalid.focus();
+        showValidatorError(firstInvalid);
+        firstInvalid.focusEl.focus();
+        firstInvalid.wrapper.scrollIntoView({ behavior: "smooth", block: "center" });
         return;
       }
 
@@ -125,12 +159,7 @@ function initBookingForms() {
         selected.clear();
         chips.forEach((c) => c.classList.remove("is-selected"));
         if (topicsHidden) topicsHidden.value = "";
-        requiredFields.forEach((field) => {
-          const fieldWrapper = field.closest(".field");
-          if (fieldWrapper) fieldWrapper.classList.remove("has-error");
-          const errorEl = fieldWrapper && fieldWrapper.querySelector(".field-error");
-          if (errorEl) errorEl.classList.remove("is-visible");
-        });
+        validators.forEach(clearValidatorError);
         form.hidden = false;
         success.classList.remove("is-visible");
       });

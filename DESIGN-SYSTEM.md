@@ -22,8 +22,13 @@ All colors are CSS custom properties in `:root` (`css/style.css`) — never a ra
 | `--hairline-light` | `#D8D4CB` | Hairline dividers on cream (lighter than ink borders) |
 | `--hairline-dark` | `#35332E` | Hairline dividers on `--ink` panels |
 | `--blue` | `#0074C2` | Secondary accent — strong blue, AA on cream |
+| `--error` | `#B3261E` | Field-level validation errors only (text, border, chip outline) |
 
-**Rule: never introduce a new color.** Every surface is cream, ink, or yellow; every panel's body text uses the muted variant already listed for that surface. `--blue` is used **only** for the small mono meta/index label at the right of section header rows (e.g. `01 / Engagements`, `2017 — Present`) and the "On Medium" link — frequent, low-emphasis elements, never on primary CTAs, headlines, or body copy. Do not extend it to buttons, panels, or large fills.
+**Rule: never introduce a new color without a narrow, explicit, documented scope.** Every surface is cream, ink, or yellow by default; every panel's body text uses the muted variant already listed for that surface. The two exceptions, and *only* these two:
+- `--blue` — **only** the small mono meta/index label at the right of section header rows (e.g. `01 / Engagements`, `2017 — Present`) and the "On Medium" link. Never on primary CTAs, headlines, or body copy.
+- `--error` — **only** the booking form's field-level validation state (`.field-error` text, `.field.has-error` input/textarea border, `.field.has-error .topic-chip` outline). Never on the form-level submission-failure banner (`.form-error`, still yellow/ink), never elsewhere on the site.
+
+Do not extend either color to buttons, panels, headlines, or large fills, and do not add a third without updating this rule explicitly.
 
 `rgba(255, 212, 0, 0.12–0.16)` (form focus backgrounds) is `--yellow` at reduced opacity, not a new color.
 
@@ -117,8 +122,13 @@ Footer (all pages): name, tagline, email, social links (LinkedIn/Dribbble/Behanc
 - Textarea: full `1px solid var(--ink)` box (not underline-only), same focus treatment at `rgba(255,212,0,0.12)`.
 - Topic chips: outline buttons, toggle to filled `--yellow` on `.is-selected` (JS-driven class toggle, not inline styles); selected values are collected into a hidden `topics` input so they submit with the form.
 - Submit: primary yellow button (`.btn-submit`); success state hides the `<form>` (`hidden` attribute — note `.booking-form[hidden] { display: none; }` must stay explicit, since `.booking-form`'s own `display: flex` would otherwise beat the browser's default `[hidden]` rule) and shows `.booking-success`, a yellow confirmation card with a "send another" reset action.
-- Error state (`.form-error`): yellow background, ink border and bold ink text — deliberately reuses the existing palette rather than introducing a red/error color, per the "never a new color" rule. Used for submission-level failures (network/Formspree errors).
-- Field-level validation (`.field-error`): the `<form>` has `novalidate` so the browser's native tooltip never appears; `js/main.js` validates `[required]` fields itself (on blur, and on submit before the fetch call) and prints a small mono message below the field — "This field is required." / "Enter a valid email address." The invalid field's border thickens to `2px solid var(--ink)` (`.field.has-error`); no red anywhere. Errors clear live as the user corrects the field.
+- Submission-level error (`.form-error`): yellow background, ink border and bold ink text — network/Formspree failures, not a validation problem. Stays yellow/ink, not `--error` (see color-token rule).
+- Field-level validation (`.field-error`, `.field.has-error`): the `<form>` has `novalidate` so the browser's native tooltip never appears. `js/main.js` builds an ordered list of validators (every `[required]` input/textarea, plus a custom one for the topic-chip group — at least one chip must be selected) and:
+  - validates a field live on blur, and clears its error live on input once corrected;
+  - on submit, clears all errors, finds the **first** invalid validator in document order, shows only that one's message, focuses/scrolls to it, and stops — it does not surface every problem in the form at once, and never checks a later field until the earlier one is fixed.
+  - Messages are specific per field, sourced from `data-required-message` / `data-invalid-message` attributes on the input (e.g. "Please enter your work email." vs. the email-format message "Please enter a valid email address."), not a generic "this field is required."
+  - Styling uses `--error` (red): `.field-error` text, `.field.has-error input/textarea` border, `.field.has-error .topic-chip` outline. This is the one deliberate exception to "cream/ink/yellow only" — see the color-token rule above.
+  - Any new required field must follow this pattern: wrap it in `.field`, add a `<span class="field-error"></span>` after it, add `data-required-message` (and `data-invalid-message` if it has a format constraint), and it's automatically picked up by `buildValidators()` — no per-field JS needed.
 - First session is free — always state this in the booking copy.
 - Submissions post to Formspree (`action="https://formspree.io/f/myeggnpv"` on the `<form>`); `js/main.js` intercepts with `fetch()` for the app-like success/error swap, using `Accept: application/json`.
 

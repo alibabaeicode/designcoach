@@ -49,13 +49,13 @@
         <form class="booking-form" action="https://formspree.io/f/myeggnpv" method="POST" novalidate>
           <div class="field">
             <label for="bk-name-2">Full name</label>
-            <input id="bk-name-2" name="name" type="text" required placeholder="Your name">
+            <input id="bk-name-2" name="name" type="text" required placeholder="Your name" data-required-message="Please enter your name.">
             <span class="field-error"></span>
           </div>
           <div class="field-row">
             <div class="field">
               <label for="bk-email-2">Work email</label>
-              <input id="bk-email-2" name="email" type="email" required placeholder="you@company.com">
+              <input id="bk-email-2" name="email" type="email" required placeholder="you@company.com" data-required-message="Please enter your work email." data-invalid-message="Please enter a valid email address.">
               <span class="field-error"></span>
             </div>
             <div class="field">
@@ -65,7 +65,7 @@
           </div>
           <div class="field">
             <span class="topics-label">What do you need help with?</span>
-            <div class="topics-row">
+            <div class="topics-row" data-topics-group>
               <button type="button" class="topic-chip" data-topic="Conversion">Conversion</button>
               <button type="button" class="topic-chip" data-topic="Retention">Retention</button>
               <button type="button" class="topic-chip" data-topic="Usability audit">Usability audit</button>
@@ -74,10 +74,11 @@
               <button type="button" class="topic-chip" data-topic="Hiring & team growth">Hiring &amp; team growth</button>
             </div>
             <input type="hidden" name="topics" value="">
+            <span class="field-error"></span>
           </div>
           <div class="field">
             <label for="bk-note-2">What specifically should this session cover?</label>
-            <textarea id="bk-note-2" name="challenge" rows="5" required placeholder="Name one concrete topic — e.g. 'review our checkout funnel' or 'coach our team on design critique' — plus a preferred day/time window."></textarea>
+            <textarea id="bk-note-2" name="challenge" rows="5" required placeholder="Name one concrete topic — e.g. 'review our checkout funnel' or 'coach our team on design critique' — plus a preferred day/time window." data-required-message="Please tell me what this session should cover."></textarea>
             <span class="field-error"></span>
           </div>
           <div class="form-error"></div>

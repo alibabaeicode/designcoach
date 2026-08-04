@@ -19,6 +19,7 @@
   --hairline-light: #D8D4CB;
   --hairline-dark: #35332E;
   --blue: #0074C2;
+  --error: #B3261E;
 
   --font-display: "Archivo", sans-serif;
   --font-body: "IBM Plex Sans", system-ui, sans-serif;
@@ -922,18 +923,19 @@ a.meta-right:hover { color: var(--blue); }
 
 .field.has-error input,
 .field.has-error textarea {
-  border-color: var(--ink);
+  border-color: var(--error);
   border-bottom-width: 2px;
 }
 .field.has-error textarea { border-width: 2px; }
+.field.has-error .topic-chip { border-color: var(--error); }
 
 .field-error {
   display: none;
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.04em;
-  font-weight: 500;
-  color: var(--ink);
+  font-weight: 600;
+  color: var(--error);
 }
 .field-error.is-visible { display: block; }
 
