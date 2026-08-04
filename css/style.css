@@ -876,6 +876,14 @@ a.meta-right:hover { color: var(--blue); }
 }
 .book-points li span { color: var(--yellow); flex-shrink: 0; }
 
+.book-email {
+  margin-top: auto;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--yellow);
+}
+
 .book-form-panel {
   padding: 76px 40px;
   background: var(--cream);
@@ -1212,6 +1220,7 @@ a.meta-right:hover { color: var(--blue); }
   .process-copy h3 { white-space: normal; }
 
   .hero-portrait { display: none; }
+  .book-email { display: none; }
 
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .stat-cell:nth-child(2n) { border-right: 0; }
