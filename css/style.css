@@ -1003,8 +1003,10 @@ a.meta-right:hover { color: var(--blue); }
 .form-error {
   display: none;
   font-size: 14px;
-  color: #8a1f11;
-  border: 1px solid #8a1f11;
+  font-weight: 600;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  background: var(--yellow);
   padding: 12px 16px;
 }
 .form-error.is-visible { display: block; }
