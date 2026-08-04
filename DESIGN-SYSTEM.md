@@ -138,11 +138,18 @@ Footer (all pages): name, tagline, email, social links (LinkedIn/Dribbble/Behanc
 - The current page's nav link gets `aria-current="page"`, styled in `--index-gold`. This exists because the site uses real multi-page routing (see "Known intentional deviations") — a single-page mock has no "current page" to indicate.
 - ≤900px: nav collapses behind a 3-line hamburger (`.nav-toggle`) into a dropdown panel (`.nav-links.nav-open`); `js/main.js` toggles the class and closes it on any nav link click. The panel is always `display: flex` at this breakpoint — open/closed is opacity + `translateY(-6px→0)` over `0.2s ease`, with `visibility`/`pointer-events` fully disabling it when closed (visibility change delayed on close so the fade-out is visible first). Respects `prefers-reduced-motion`. This is the pattern for any future show/hide UI that should animate — don't reach for a plain `display: none/flex` toggle, it can't transition.
 
+## Motion
+
+- **Section reveal**: every direct `main > section` gets a subtle fade + `translateY(22px→0)` over `0.7s ease` the first time it's ~12% into the viewport (`initScrollReveal()` in `js/main.js`, via `IntersectionObserver`, `.reveal`/`.is-visible` classes — see also the mobile-nav pattern note above). Above-the-fold sections reveal almost immediately on load; this is deliberately the same mechanism for both "page load" and "scroll into view," not two separate systems. If `IntersectionObserver` is unavailable or `prefers-reduced-motion` is set, all sections are marked visible immediately with no animation. Sections never start hidden in markup — the `.reveal` class is only added by JS right before observing, so content is never stuck invisible if a script fails to run.
+- **Site-wide smooth scroll**: [Lenis](https://github.com/darkroomengineering/lenis) is loaded via CDN (`<script src="https://unpkg.com/lenis@^1/dist/lenis.min.js">`, pinned to major version 1) on every page, before `js/main.js`. `initSmoothScroll()` checks `typeof Lenis` and no-ops silently if the CDN failed to load or `prefers-reduced-motion` is set — native scroll is the fallback, never broken. Don't add a second smooth-scroll mechanism (e.g. `scroll-behavior: smooth`) alongside it; the site currently has no same-page anchor links, so this hasn't come up, but if one is added, scroll to it through Lenis's own `scrollTo()`, not native anchor jump, to avoid the two fighting.
+- Any new motion should default to `opacity`/`transform` only (compositor-friendly) and must have a `prefers-reduced-motion` path, per the two patterns above.
+
 ## Known intentional deviations
 
 1. **Real multi-page routing** instead of a single-page app with client-side tab state. `index.html` / `services.html` / `about.html` / `book.html` are separate documents with real URLs (shareable, SEO-friendly, working back/forward), unlike the original Claude Design prototype which faked "pages" with JS state in one HTML file. Header/footer markup is duplicated across the four files as a result — there's no shared templating layer in a plain static site.
 2. **Nav active-page indicator** (`--index-gold` on the current page's link) — new, required by real routing; didn't exist in the single-page mock.
-3. **Form error state uses yellow/ink**, not a red — see Forms section above.
+3. **Two error colors, both deliberate**: submission-level failures stay yellow/ink (`.form-error`); field-level validation uses `--error` (red), scoped exactly as described in the color-token rule. Neither extends beyond its stated use.
+4. **External CDN dependency (Lenis)** — the only third-party script this project loads besides Google Fonts. Chosen over a hand-rolled scroll-smoothing script per the project's "don't reinvent what a small, well-tested library already solves" stance; kept to one narrow job (scroll feel) and always has a native-scroll fallback.
 
 ## File map
 

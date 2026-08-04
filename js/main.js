@@ -5,7 +5,48 @@
  * endpoint at https://formspree.io/f/myeggnpv (set on the <form> in
  * index.html and book.html). Formspree requires the first submission
  * to a new form to be confirmed by email before it starts delivering.
+ *
+ * Lenis (loaded via CDN in each HTML file, before this script) gives
+ * the whole site smoother, weighted scrolling instead of the browser
+ * default. initSmoothScroll() no-ops if the CDN script fails to load
+ * or hasn't loaded yet — native scrolling just applies as the fallback.
  */
+
+function initScrollReveal() {
+  const targets = document.querySelectorAll("main > section");
+  if (!targets.length) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    targets.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+
+  targets.forEach((el) => el.classList.add("reveal"));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+  );
+  targets.forEach((el) => observer.observe(el));
+}
+
+function initSmoothScroll() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (typeof Lenis === "undefined") return;
+
+  const lenis = new Lenis({ duration: 1.1 });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
 
 function initNav() {
   const toggle = document.querySelector(".nav-toggle");
@@ -170,4 +211,6 @@ function initBookingForms() {
 document.addEventListener("DOMContentLoaded", () => {
   initNav();
   initBookingForms();
+  initScrollReveal();
+  initSmoothScroll();
 });
