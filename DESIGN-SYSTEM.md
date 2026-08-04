@@ -136,7 +136,7 @@ Footer (all pages): name, tagline, email, social links (LinkedIn/Dribbble/Behanc
 
 - Desktop: inline nav row + filled "Book a session" pill, sticky header with blur backdrop.
 - The current page's nav link gets `aria-current="page"`, styled in `--index-gold`. This exists because the site uses real multi-page routing (see "Known intentional deviations") — a single-page mock has no "current page" to indicate.
-- ≤900px: nav collapses behind a 3-line hamburger (`.nav-toggle`) into a dropdown panel (`.nav-links.nav-open`); `js/main.js` toggles the class and closes it on any nav link click.
+- ≤900px: nav collapses behind a 3-line hamburger (`.nav-toggle`) into a dropdown panel (`.nav-links.nav-open`); `js/main.js` toggles the class and closes it on any nav link click. The panel is always `display: flex` at this breakpoint — open/closed is opacity + `translateY(-6px→0)` over `0.2s ease`, with `visibility`/`pointer-events` fully disabling it when closed (visibility change delayed on close so the fade-out is visible first). Respects `prefers-reduced-motion`. This is the pattern for any future show/hide UI that should animate — don't reach for a plain `display: none/flex` toggle, it can't transition.
 
 ## Known intentional deviations
 
