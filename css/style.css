@@ -884,6 +884,7 @@ a.meta-right:hover { color: var(--blue); }
   flex-direction: column;
   gap: 26px;
 }
+.booking-form[hidden] { display: none; }
 
 .field {
   display: flex;
