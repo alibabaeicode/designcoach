@@ -152,7 +152,7 @@ img { max-width: 100%; display: block; }
 
 main { flex: 1; }
 
-.hero-grid, .about-grid, .book-grid, .services-hero, .grid-2, .grid-3 { display: grid; }
+.hero-grid, .about-grid, .book-grid, .services-hero, .grid-2, .grid-3, .pillars-grid { display: grid; }
 
 /* ---------- Home: hero ---------- */
 
@@ -1178,7 +1178,7 @@ a.meta-right:hover { color: var(--blue); }
   .nav-links.nav-open { display: flex; }
   .nav-toggle { display: flex; }
 
-  .hero-grid, .grid-2, .about-grid, .book-grid, .services-hero, .grid-3 {
+  .hero-grid, .grid-2, .about-grid, .book-grid, .services-hero, .grid-3, .pillars-grid {
     grid-template-columns: 1fr !important;
   }
 
