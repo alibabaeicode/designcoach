@@ -673,7 +673,7 @@ a.meta-right:hover { color: var(--blue); }
   text-transform: uppercase;
 }
 
-.cta-band .btn-invert { margin-top: 0; padding: 18px 28px; font-size: 15px; }
+.cta-band .btn-invert { margin-top: 0; align-self: center; padding: 18px 28px; font-size: 15px; }
 
 /* ---------- About page ---------- */
 
