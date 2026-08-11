@@ -48,6 +48,30 @@ function initSmoothScroll() {
   requestAnimationFrame(raf);
 }
 
+function initHeroTextCycle() {
+  const el = document.querySelector("[data-cycle-words]");
+  if (!el) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let words;
+  try {
+    words = JSON.parse(el.dataset.cycleWords);
+  } catch (e) {
+    return;
+  }
+  if (!Array.isArray(words) || words.length < 2) return;
+
+  let index = 0;
+  setInterval(() => {
+    el.classList.add("is-swapping");
+    setTimeout(() => {
+      index = (index + 1) % words.length;
+      el.textContent = words[index];
+      el.classList.remove("is-swapping");
+    }, 350);
+  }, 2600);
+}
+
 function initNav() {
   const toggle = document.querySelector(".nav-toggle");
   const links = document.querySelector(".nav-links");
@@ -213,4 +237,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initBookingForms();
   initScrollReveal();
   initSmoothScroll();
+  initHeroTextCycle();
 });

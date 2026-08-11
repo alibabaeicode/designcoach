@@ -224,6 +224,13 @@ h1 {
   -webkit-box-decoration-break: clone;
 }
 
+.mark-yellow[data-cycle-words] { transition: opacity 0.35s ease; }
+.mark-yellow[data-cycle-words].is-swapping { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mark-yellow[data-cycle-words] { transition: none; }
+}
+
 .intro-copy {
   margin: 0;
   max-width: 52ch;
