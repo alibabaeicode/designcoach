@@ -224,17 +224,13 @@ h1 {
   -webkit-box-decoration-break: clone;
 }
 
-.mark-yellow--cycle {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
+.mark-yellow--cycle { line-height: 1.15; }
 
 .cycle-word-mask {
   display: inline-block;
   overflow: hidden;
   vertical-align: bottom;
-  line-height: 1;
+  line-height: 1.15;
 }
 
 .cycle-word {
