@@ -62,7 +62,7 @@ function initHeroTextCycle() {
   if (!Array.isArray(words) || words.length < 2) return;
 
   let index = 0;
-  const outDuration = 600;
+  const outDuration = 750;
 
   setInterval(() => {
     el.classList.add("cycle-out");
@@ -76,7 +76,7 @@ function initHeroTextCycle() {
       el.style.transition = "";
       requestAnimationFrame(() => el.classList.remove("cycle-in"));
     }, outDuration);
-  }, 3000);
+  }, 3200);
 }
 
 function initNav() {
