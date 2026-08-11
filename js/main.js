@@ -62,14 +62,21 @@ function initHeroTextCycle() {
   if (!Array.isArray(words) || words.length < 2) return;
 
   let index = 0;
+  const outDuration = 500;
+
   setInterval(() => {
-    el.classList.add("is-swapping");
+    el.classList.add("cycle-out");
     setTimeout(() => {
       index = (index + 1) % words.length;
+      el.style.transition = "none";
       el.textContent = words[index];
-      el.classList.remove("is-swapping");
-    }, 350);
-  }, 2600);
+      el.classList.remove("cycle-out");
+      el.classList.add("cycle-in");
+      void el.offsetWidth;
+      el.style.transition = "";
+      requestAnimationFrame(() => el.classList.remove("cycle-in"));
+    }, outDuration);
+  }, 2800);
 }
 
 function initNav() {
