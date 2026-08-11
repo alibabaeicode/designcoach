@@ -1282,6 +1282,8 @@ a.meta-right:hover { color: var(--blue); }
   .field-row { grid-template-columns: 1fr; }
 
   .cycle-break { display: block; }
+
+  .section-head { align-items: flex-end; }
 }
 
 @media (max-width: 560px) {
