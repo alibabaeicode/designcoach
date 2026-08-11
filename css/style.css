@@ -127,7 +127,7 @@ img { max-width: 100%; display: block; }
   color: var(--cream) !important;
   padding: 11px 18px;
 }
-.btn-book:hover { background: var(--yellow); color: var(--ink) !important; text-decoration: none; }
+.nav-links a.btn-book:hover { background: var(--yellow); color: var(--ink) !important; text-decoration: none; }
 
 .nav-toggle {
   display: none;
