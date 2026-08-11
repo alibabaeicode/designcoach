@@ -115,6 +115,7 @@ Footer (all pages): name, tagline, email, social links (LinkedIn/Dribbble/Behanc
 - Home hero and About page use the same file (`assets/portrait-home.jpg`) so the two portraits stay in sync — if one changes, check whether the other should too.
 - Logo mark (nav): `30px` circle, `object-fit: cover`, no border (`assets/logo-mark.jpg`).
 - Home hero portrait is hidden on mobile (≤900px); About's portrait stays visible at all sizes.
+- Favicon: generated from `assets/logo-mark.jpg` (same yellow-circle mark as the nav), not a separate design — `favicon.ico` (16/32/48, transparent corners) at the repo root plus `assets/favicon-16x16.png` / `assets/favicon-32x32.png` (transparent) and `assets/apple-touch-icon.png` (180×180, opaque background — iOS renders alpha as black, so this one is never transparent) referenced from every page's `<head>`. If the logo mark ever changes, regenerate all four from the new source so the tab icon stays in sync with the nav mark.
 
 ## Forms & inputs (booking form, on Home + Book)
 
@@ -160,5 +161,6 @@ Footer (all pages): name, tagline, email, social links (LinkedIn/Dribbble/Behanc
 - `index.html`, `services.html`, `about.html`, `book.html` — the four real pages. Each duplicates the header/nav/footer markup.
 - `css/style.css` — all styles: tokens, every page's layout, and the responsive overrides.
 - `js/main.js` — mobile nav toggle + booking form (topic chips, submit/success/error handling). Shared by every page that has a `[data-booking-form]` block.
-- `assets/` — `portrait-home.jpg` (Home hero + About portrait), `logo-mark.jpg` (nav mark).
+- `assets/` — `portrait-home.jpg` (Home hero + About portrait), `logo-mark.jpg` (nav mark), `favicon-16x16.png` / `favicon-32x32.png` / `apple-touch-icon.png` (generated from `logo-mark.jpg`, see Imagery).
+- `favicon.ico` — repo root (not in `assets/`), so browsers that auto-probe `/favicon.ico` find it without a `<link>` tag.
 - This file (`DESIGN-SYSTEM.md`) — update in the same commit as any visual/content change so it never drifts from the live files.
