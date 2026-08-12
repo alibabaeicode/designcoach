@@ -322,6 +322,18 @@ h1 {
   object-fit: cover;
   object-position: 50% 20%;
 }
+.hero-portrait:has(#system-loop) { background: transparent; }
+
+#system-loop {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+#system-loop svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 
 /* ---------- Stats band ---------- */
 
@@ -446,6 +458,7 @@ a.meta-right:hover { color: var(--blue); }
 .offer-card {
   padding: 44px 36px;
   border-right: 1px solid var(--ink);
+  background: #FFFFFF;
   display: flex;
   flex-direction: column;
   gap: 22px;
@@ -533,6 +546,7 @@ a.meta-right:hover { color: var(--blue); }
 .teach-card {
   padding: 36px 30px;
   border-right: 1px solid var(--ink);
+  background: #FFFFFF;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -655,6 +669,7 @@ a.meta-right:hover { color: var(--blue); }
   padding: 40px 34px;
   border-right: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
+  background: #FFFFFF;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -802,6 +817,7 @@ a.meta-right:hover { color: var(--blue); }
   padding: 26px 30px;
   border-bottom: 1px solid var(--ink);
   border-right: 1px solid var(--ink);
+  background: #FFFFFF;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -857,6 +873,7 @@ a.meta-right:hover { color: var(--blue); }
   gap: 14px;
   padding: 34px;
   border-right: 1px solid var(--ink);
+  background: #FFFFFF;
   text-decoration: none;
   color: inherit;
 }
