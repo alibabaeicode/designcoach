@@ -41,18 +41,18 @@ body {
   background-repeat: no-repeat;
   background-size: 95vmax 95vmax, 90vmax 90vmax, 95vmax 95vmax, 90vmax 90vmax;
   background-position: -10% 2%, 106% 28%, -6% 60%, 104% 88%;
-  animation: aurora-drift 52s ease-in-out infinite alternate;
+  animation: aurora-drift 30s ease-in-out infinite alternate;
   color: var(--ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
 
 @keyframes aurora-drift {
-  0%   { background-position: -10% 2%,  106% 28%,  -6% 60%,  104% 88%; }
-  25%  { background-position:  -4% 5%,   98% 32%,   0% 56%,   98% 92%; }
-  50%  { background-position:   2% 0%,   92% 24%,   4% 64%,  102% 84%; }
-  75%  { background-position:  -6% 4%,  102% 30%,  -2% 58%,   99% 90%; }
-  100% { background-position: -10% 2%,  106% 28%,  -6% 60%,  104% 88%; }
+  0%   { background-position: -10% 2%,   106% 28%,  -6% 60%,   104% 88%; }
+  25%  { background-position:  -2% 9%,    94% 38%,   4% 50%,    94% 98%; }
+  50%  { background-position:   6% -4%,   86% 16%,  12% 70%,   106% 76%; }
+  75%  { background-position:  -8% 8%,   102% 34%,  -4% 54%,   98% 94%; }
+  100% { background-position: -10% 2%,   106% 28%,  -6% 60%,   104% 88%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
