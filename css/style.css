@@ -34,10 +34,10 @@ body {
   margin: 0;
   background-color: #FFFFFF;
   background-image:
-    radial-gradient(circle, rgba(72, 168, 232, 0.22) 0%, rgba(72, 168, 232, 0) 72%),
-    radial-gradient(circle, rgba(255, 92, 141, 0.20) 0%, rgba(255, 92, 141, 0) 72%),
-    radial-gradient(circle, rgba(72, 168, 232, 0.16) 0%, rgba(72, 168, 232, 0) 72%),
-    radial-gradient(circle, rgba(255, 92, 141, 0.16) 0%, rgba(255, 92, 141, 0) 72%);
+    radial-gradient(circle, rgba(72, 168, 232, 0.34) 0%, rgba(72, 168, 232, 0) 72%),
+    radial-gradient(circle, rgba(255, 92, 141, 0.32) 0%, rgba(255, 92, 141, 0) 72%),
+    radial-gradient(circle, rgba(72, 168, 232, 0.26) 0%, rgba(72, 168, 232, 0) 72%),
+    radial-gradient(circle, rgba(255, 92, 141, 0.26) 0%, rgba(255, 92, 141, 0) 72%);
   background-repeat: no-repeat;
   background-size: 95vmax 95vmax, 90vmax 90vmax, 95vmax 95vmax, 90vmax 90vmax;
   background-position: -10% 2%, 106% 28%, -6% 60%, 104% 88%;
