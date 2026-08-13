@@ -217,6 +217,7 @@ main { flex: 1; }
   gap: 34px;
   border-right: 1px solid var(--ink);
 }
+.hero-grid:has(#system-loop) .hero-copy { border-right: 0; }
 
 .eyebrow {
   font-family: var(--font-mono);
@@ -315,6 +316,9 @@ h1 {
   justify-content: center;
   overflow: hidden;
   min-height: 520px;
+}
+@media (min-width: 901px) {
+  .hero-portrait:has(#system-loop) { min-height: 680px; }
 }
 .hero-portrait img {
   width: 100%;
