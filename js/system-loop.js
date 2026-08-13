@@ -233,21 +233,6 @@
     svg.appendChild(gClip);
     container.appendChild(svg);
 
-    /* ---- mouse parallax ---- */
-    var mouse = { x: 0, y: 0 };
-    var mouseTarget = { x: 0, y: 0 };
-    var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
-    if (canHover) {
-      container.addEventListener('pointermove', function (e) {
-        var rect = container.getBoundingClientRect();
-        mouseTarget.x = clamp(((e.clientX - rect.left) / rect.width) * 2 - 1, -1, 1);
-        mouseTarget.y = clamp(((e.clientY - rect.top) / rect.height) * 2 - 1, -1, 1);
-      });
-      container.addEventListener('pointerleave', function () {
-        mouseTarget.x = 0; mouseTarget.y = 0;
-      });
-    }
-
     /* ---- planes ---- */
     var layerGroups = LAYERS.map(function () {
       var g = svgEl('g');
@@ -498,14 +483,8 @@
       var drift = driftFn(camK);
       var spin = spinFn(camK);
 
-      mouse.x += (mouseTarget.x - mouse.x) * 0.06;
-      mouse.y += (mouseTarget.y - mouse.y) * 0.06;
-      var panX = mouse.x * 34;
-      var panY = mouse.y * 22;
-      var tilt = mouse.x * 3.5;
-
       gClip.style.opacity = out;
-      gCam.style.transform = 'translate(' + panX + 'px, ' + (drift + panY) + 'px) scale(' + scale + ') rotate(' + (spin + tilt) + 'deg)';
+      gCam.style.transform = 'translate(0px, ' + drift + 'px) scale(' + scale + ') rotate(' + spin + 'deg)';
 
       var planeProg = [planeProgFns[0](T), planeProgFns[1](T), planeProgFns[2](T)];
       var lift = [0, liftFns[1](T), liftFns[2](T)];
