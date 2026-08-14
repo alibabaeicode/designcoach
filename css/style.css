@@ -460,7 +460,7 @@ a.meta-right:hover { color: var(--blue); }
 .grid-2 {
   grid-template-columns: repeat(2, 1fr);
   border: 1px solid var(--ink);
-  border-top: 0;
+  margin-top: 28px;
 }
 
 .offer-card {
@@ -1293,8 +1293,6 @@ a.meta-right:hover { color: var(--blue); }
   }
   .about-copy { border-right: 0; border-bottom: 1px solid var(--ink); }
   .book-intro { border-bottom: 1px solid var(--ink); }
-
-  .grid-2 { border-top: 1px solid var(--ink); margin-top: 28px; }
 
   .grid-2 .offer-card,
   .grid-3 .teach-card {
