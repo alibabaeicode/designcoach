@@ -559,14 +559,23 @@
   if (!host) return;
   var scene = mount(host);
 
+  /* Play once from page load, then freeze on the fully-formed frame —
+     before the authored Fade stage (13.2s) would start dissolving it —
+     instead of looping back to an empty frame forever. */
+  var FREEZE_AT = 12.5;
+
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) {
-    scene.update(CUES.Flow + 1); // static, fully-formed frame
+    scene.update(FREEZE_AT);
   } else {
     var startTs = null;
     function frame(ts) {
       if (startTs === null) startTs = ts;
-      var T = ((ts - startTs) / 1000) % AUTHORED_TOTAL;
+      var T = (ts - startTs) / 1000;
+      if (T >= FREEZE_AT) {
+        scene.update(FREEZE_AT);
+        return;
+      }
       scene.update(T);
       requestAnimationFrame(frame);
     }
