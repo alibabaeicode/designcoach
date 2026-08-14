@@ -209,7 +209,8 @@ main { flex: 1; }
   border-bottom: 1px solid var(--ink);
 }
 @media (min-width: 901px) {
-  .hero-grid:has(#system-loop) { height: calc(100vh - 72px); }
+  .hero-grid:has(#system-loop) { min-height: calc(100vh - 72px); }
+  .hero-grid:has(#system-loop) .hero-copy { padding-bottom: 96px; }
 }
 
 .hero-copy {
@@ -321,7 +322,7 @@ h1 {
   min-height: 520px;
 }
 @media (min-width: 901px) {
-  .hero-portrait:has(#system-loop) { min-height: 680px; }
+  .hero-portrait:has(#system-loop) { min-height: 680px; max-height: calc(100vh - 72px); }
 }
 .hero-portrait img {
   width: 100%;
