@@ -64,10 +64,11 @@ Mobile override (≤900px) only touches `h1` → `clamp(34px, 9vw, 60px)`; nothi
 
 ## Spacing & grid
 
-- Section padding: `72–88px` vertical, `40px` horizontal (`.pad-lg` drops horizontal to `20px` ≤900px). The yellow CTA band is a deliberate exception at `64px` vertical (a compact banner, not a full section).
+- Section padding: `72–88px` vertical, `40px` horizontal (`.pad-lg` drops horizontal to `20px` ≤900px). The yellow CTA band is a deliberate exception at `64px` vertical (a compact banner, not a full section). `.hero-copy` stays inside this range on both edges (`88px` top and bottom) — don't push either past `88px` even to fix a spacing complaint; fix the row's height instead (see below).
 - Card/cell padding: `26–48px`.
 - Gaps: `10–16px` tight groups, `22–34px` card internals, `48px` marquee.
 - All multi-item rows use flex/grid + `gap`, never margin-spaced siblings.
+- **Viewport-capped hero row** (desktop only, currently scoped to `.hero-grid:has(#system-loop)`): `min-height: calc(100vh - 72px)` on `.hero-grid`, `max-height: calc(100vh - 72px)` on `.hero-portrait`. Use `min-height`/`max-height`, never a hard `height` on the grid — a hard `height` leaves no slack for `.hero-copy`'s bottom padding when its content is tall, crowding the CTAs against whatever section follows. `72px` is the sticky header's rendered height; if the header's padding ever changes, update both `calc()` values together.
 
 ## Structural motif — the ruled grid
 
@@ -114,7 +115,7 @@ Footer (all pages): name, tagline, email, social links (LinkedIn/Dribbble/Behanc
 - Portrait treatment: full-bleed illustration, `object-fit: cover`, no border/ring/shadow.
 - Home hero and About page use the same file (`assets/portrait-home.jpg`) so the two portraits stay in sync — if one changes, check whether the other should too.
 - Logo mark (nav): `30px` circle, `object-fit: cover`, no border (`assets/logo-mark.jpg`).
-- Home hero portrait is hidden on mobile (≤900px); About's portrait stays visible at all sizes.
+- Home hero portrait is hidden on mobile (≤900px); About's portrait stays visible at all sizes. **Currently swapped for a trial** — see "Current trial (Home hero)" below; this row describes the default/fallback state to restore if the trial is dropped.
 - Favicon: generated from `assets/logo-mark.jpg` (same yellow-circle mark as the nav), not a separate design — `favicon.ico` (16/32/48, transparent corners) at the repo root plus `assets/favicon-16x16.png` / `assets/favicon-32x32.png` (transparent) and `assets/apple-touch-icon.png` (180×180, opaque background — iOS renders alpha as black, so this one is never transparent) referenced from every page's `<head>`. If the logo mark ever changes, regenerate all four from the new source so the tab icon stays in sync with the nav mark.
 
 ## Forms & inputs (booking form, on Home + Book)
@@ -150,6 +151,13 @@ Footer (all pages): name, tagline, email, social links (LinkedIn/Dribbble/Behanc
   - **Containment fix**: `.mark-yellow` must stay `display: inline` (with `box-decoration-break: clone`) — this is what gives each *wrapped line* its own tightly-fit yellow box (e.g. "ACTUALLY" and "SHIP" on separate lines each get their own snug highlight) rather than one full-width block. An `inline-block` version was tried and reverted: it fixed vertical containment but broke this per-line hugging, stretching the highlight to the container's full width whenever the phrase wrapped. The actual fix is a `mark-yellow--cycle` modifier that just sets `line-height: 1.15` to match `.cycle-word`/`.cycle-word-mask`'s own line-height — an inline element's painted background height comes from *its own* line-height (inherited as `0.92` from `.hero-h1` otherwise), so without this it was shorter than its inline-block child and the sliding word's fade could show above the yellow rectangle mid-transition even though `.cycle-word-mask` was still clipping it correctly. Keep any future fix to this line-height-matching approach — don't reach for `inline-block`/`overflow:hidden` on `.mark-yellow` itself again, it costs the wrap-hugging behavior.
   - This is the general pattern for any future "rotating word" effect: a fixed overflow-hidden mask on the animated word, with its own line-height matched to any inline ancestor that paints a highlight background behind it — plus one element that drifts out one side and back in from the other, never a plain opacity swap in place. Two fixed lines above it ("Design decisions" / "your team can") and the word "actually" itself are static markup/text, never touched by the script. No-ops entirely under `prefers-reduced-motion` (first word just stays put, no interval started). To change the word list, edit the JSON in the `data-cycle-words` attribute — no JS changes needed.
 - Any new motion should default to `opacity`/`transform` only (compositor-friendly) and must have a `prefers-reduced-motion` path, per the patterns above.
+
+## Current trial (Home hero) — not yet locked in
+
+Two live-site experiments, both easy to revert, both **not** part of the locked color/imagery rules above until confirmed permanent:
+
+1. **Animated background wash**: `body`'s flat `--cream` fill is temporarily replaced with a white base + slow-drifting blue/pink radial-gradient (`@keyframes aurora-drift` in `css/style.css`), and `.site` is `background: transparent` so it shows through. Bordered grid cards (`.offer-card`, `.teach-card`, `.pillar-card`, `.consulting-cell`, `.article-card`) were given an explicit `#FFFFFF` background so they still read as solid cards against the moving gradient — keep this pairing together; removing the gradient without checking these card backgrounds is fine (white ≈ invisible against cream too), but reverting the gradient without them would silently leave dead white card fills against a cream page. To revert fully: restore `background: var(--cream)` on `body` and `.site`, drop the `#system-loop`-adjacent hero rules described below, and the card-background additions can stay (harmless either way) or be removed.
+2. **Home hero animation**: the portrait photo (`<img>`) is swapped for a framework-free SVG animation, `js/system-loop.js` (`#system-loop` div in `index.html`'s hero), recolored from its original palette to the site's `--ink`/`--yellow`. Mouse-parallax was tried and explicitly rejected (removed) — it must stay a fixed, non-interactive loop. All of its container sizing lives in `:has(#system-loop)`-scoped rules (`.hero-grid`, `.hero-portrait`, `.hero-copy`) precisely so that reverting to the `<img>` automatically drops every animation-specific override with no manual cleanup. Do not hand-tune these `:has()` rules for the photo case — if the photo comes back, delete the rules, don't repurpose them.
 
 ## Known intentional deviations
 

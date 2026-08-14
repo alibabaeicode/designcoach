@@ -210,7 +210,7 @@ main { flex: 1; }
 }
 @media (min-width: 901px) {
   .hero-grid:has(#system-loop) { min-height: calc(100vh - 72px); }
-  .hero-grid:has(#system-loop) .hero-copy { padding-bottom: 96px; }
+  .hero-grid:has(#system-loop) .hero-copy { padding-bottom: 88px; }
 }
 
 .hero-copy {
