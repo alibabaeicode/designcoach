@@ -208,6 +208,9 @@ main { flex: 1; }
   grid-template-columns: 1.15fr 0.85fr;
   border-bottom: 1px solid var(--ink);
 }
+@media (min-width: 901px) {
+  .hero-grid:has(#system-loop) { height: calc(100vh - 72px); }
+}
 
 .hero-copy {
   padding: 88px 40px 56px;
@@ -1280,7 +1283,13 @@ a.meta-right:hover { color: var(--blue); }
     grid-template-columns: 1fr !important;
   }
 
-  .hero-copy { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .hero-copy {
+    border-right: 0;
+    border-bottom: 1px solid var(--ink);
+    min-height: calc(100svh - 72px);
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
   .about-copy { border-right: 0; border-bottom: 1px solid var(--ink); }
   .book-intro { border-bottom: 1px solid var(--ink); }
 
