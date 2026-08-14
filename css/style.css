@@ -322,7 +322,7 @@ h1 {
   min-height: 520px;
 }
 @media (min-width: 901px) {
-  .hero-portrait:has(#system-loop) { min-height: 680px; max-height: calc(100vh - 72px); }
+  .hero-portrait:has(#system-loop) { min-height: 680px; }
 }
 .hero-portrait img {
   width: 100%;

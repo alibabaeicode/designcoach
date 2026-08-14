@@ -218,8 +218,9 @@
   }
 
   function mount(container) {
-    var VIEW_Y_SHIFT = 260;
-    var svg = svgEl('svg', { viewBox: '0 ' + VIEW_Y_SHIFT + ' ' + W + ' ' + H, preserveAspectRatio: 'xMidYMid meet' });
+    var VIEW_Y_SHIFT = 250;
+    var VIEW_H = 1430;
+    var svg = svgEl('svg', { viewBox: '0 ' + VIEW_Y_SHIFT + ' ' + W + ' ' + VIEW_H, preserveAspectRatio: 'xMidYMid meet' });
     var defs = svgEl('defs');
     var clip = svgEl('clipPath', { id: 'system-loop-frame' });
     clip.appendChild(svgEl('rect', { x: 44, y: 44, width: W - 88, height: H - 88 }));
