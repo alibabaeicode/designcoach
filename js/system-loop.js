@@ -465,7 +465,10 @@
     /* ================= per-frame update ================= */
 
     var outFn = MOTION.draw(CUES.Fade + 0.4, AUTHORED_TOTAL - 0.15);
-    var camKFn = MOTION.draw(0, AUTHORED_TOTAL);
+    /* Camera drift/scale settles well before FREEZE_AT (12.5s below) so
+       the frame is already still for a couple of seconds before it locks
+       — otherwise the freeze would catch it mid-shrink. */
+    var camKFn = MOTION.draw(0, 9.5);
     var scaleFn = interpolate([0, 1], [1.1, 0.9]);
     var driftFn = interpolate([0, 1], [40, -30]);
     var spinFn = interpolate([0, 1], [-2.2, 2.2]);
