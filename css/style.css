@@ -324,6 +324,24 @@ h1 {
 }
 .btn-secondary:hover { background: var(--ink); color: var(--cream); text-decoration: none; }
 
+/* ---------- Centered hero (landing-page variant) ---------- */
+/* A single-column, centered alternative to .hero-grid — same tokens,
+   type scale and CTA components, just laid out for a standalone landing
+   page instead of the split copy/portrait grid. */
+
+.landing-hero {
+  padding: 100px 40px 88px;
+  border-bottom: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  text-align: center;
+}
+
+.landing-hero .intro-copy { margin: 0 auto; text-align: center; }
+.landing-hero .cta-row { justify-content: center; }
+
 .hero-portrait {
   background: var(--yellow);
   display: flex;
@@ -1386,34 +1404,90 @@ a.meta-right:hover { color: var(--blue); }
    already-converted-to-logical) direction cues left in the base rules.
    ========================================================================== */
 
+/* Self-hosted (not Google Fonts) — proprietary/commercial font, licensed
+   from fontiran.com. FontLicense.txt sits next to the font files per the
+   license's own requirement; the 6-digit license code belongs in that
+   file once issued. Only the four weights actually used are shipped. */
+@font-face {
+  font-family: "KalamehWeb";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../assets/fonts/kalameh/KalamehWeb-Light.woff2") format("woff2"),
+       url("../assets/fonts/kalameh/KalamehWeb-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "KalamehWeb";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/kalameh/KalamehWeb-Regular.woff2") format("woff2"),
+       url("../assets/fonts/kalameh/KalamehWeb-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "KalamehWeb";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/kalameh/KalamehWeb-Bold.woff2") format("woff2"),
+       url("../assets/fonts/kalameh/KalamehWeb-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "KalamehWeb";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("../assets/fonts/kalameh/KalamehWeb-Black.woff2") format("woff2"),
+       url("../assets/fonts/kalameh/KalamehWeb-Black.woff") format("woff");
+}
+
 html[lang="fa"] {
-  --font-display: "Vazirmatn", sans-serif;
-  --font-body: "Vazirmatn", sans-serif;
-  --font-mono: "Vazirmatn", sans-serif;
+  --font-display: "KalamehWeb", sans-serif;
+  --font-body: "KalamehWeb", sans-serif;
+  --font-mono: "KalamehWeb", sans-serif;
 }
 
 html[lang="fa"] body {
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
-/* Vazirmatn is a joined (cursive) script — any letter-spacing breaks the
-   letter joining, and uppercase is a no-op on Persian glyphs but would
-   still wrongly shout any embedded Latin (client names, tool names, the
-   brand name). Reset both site-wide for this scope rather than tracking
-   the 30+ individual rules that set them for the Latin/English version. */
+/* Kalameh is a joined (cursive) script like every Persian font — any
+   letter-spacing breaks the letter joining, and uppercase is a no-op on
+   Persian glyphs but would still wrongly shout any embedded Latin (client
+   names, tool names, the brand name). Reset both site-wide for this scope
+   rather than tracking the 30+ individual rules that set them for the
+   Latin/English version. */
 html[lang="fa"] * {
   letter-spacing: normal !important;
   text-transform: none !important;
 }
 
-/* Headings stay bold per the design system's weight scale — only body
-   copy goes light. */
+/* Headings go very heavy (Black, 900) for maximum contrast against the
+   light body — this is the deliberate "thin body, bold titles" brief,
+   not a mistake to soften back toward 700. */
 html[lang="fa"] h1,
 html[lang="fa"] h2,
 html[lang="fa"] h3,
 html[lang="fa"] .footer-wordmark,
-html[lang="fa"] .brand-name,
+html[lang="fa"] .brand-name {
+  font-weight: 900;
+}
+
+/* The English display headings use very tight (0.92-0.98) line-heights
+   tuned for condensed uppercase Latin type — at Kalameh's heavy 900
+   weight, Persian ascenders/descenders collide across lines at that
+   tightness. Loosen just the handful of explicit tight values back out
+   to a reading-safe but still-punchy heading rhythm. */
+html[lang="fa"] h1,
+html[lang="fa"] .services-hero h1,
+html[lang="fa"] .about-h1,
+html[lang="fa"] .book-intro h2 {
+  line-height: 1.45;
+}
+
+/* One step down from headings — UI emphasis (buttons, numerals, index
+   marks) reads as bold, not as heavy as an actual heading. */
 html[lang="fa"] .stat-value,
 html[lang="fa"] .pillar-num,
 html[lang="fa"] .process-num,
@@ -1443,5 +1517,5 @@ html[lang="fa"] .topic-chip.is-selected {
   }
 }
 
-/* Numerals: Vazirmatn renders Persian digits (۰-۹) natively — no CSS
+/* Numerals: Kalameh renders Persian digits (۰-۹) natively — no CSS
    needed, just type them in the markup. */

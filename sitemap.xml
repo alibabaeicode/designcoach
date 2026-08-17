@@ -12,22 +12,16 @@
     <loc>https://alibabaei.info/services.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://alibabaei.info/services.html"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://alibabaei.info/fa/services.html"/>
   </url>
   <url>
     <loc>https://alibabaei.info/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://alibabaei.info/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://alibabaei.info/fa/about.html"/>
   </url>
   <url>
     <loc>https://alibabaei.info/book.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://alibabaei.info/book.html"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://alibabaei.info/fa/book.html"/>
   </url>
   <url>
     <loc>https://alibabaei.info/fa/</loc>
@@ -35,26 +29,5 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://alibabaei.info/"/>
     <xhtml:link rel="alternate" hreflang="fa" href="https://alibabaei.info/fa/"/>
-  </url>
-  <url>
-    <loc>https://alibabaei.info/fa/services.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://alibabaei.info/services.html"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://alibabaei.info/fa/services.html"/>
-  </url>
-  <url>
-    <loc>https://alibabaei.info/fa/about.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://alibabaei.info/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://alibabaei.info/fa/about.html"/>
-  </url>
-  <url>
-    <loc>https://alibabaei.info/fa/book.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://alibabaei.info/book.html"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://alibabaei.info/fa/book.html"/>
   </url>
 </urlset>

@@ -55,6 +55,19 @@ function initSmoothScroll() {
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
+
+  // Same-page anchor links (e.g. the fa/ landing page's in-page nav) route
+  // through Lenis's own scrollTo() instead of the native instant jump, so
+  // the two don't fight. No-ops on pages with no `#`-hash links.
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const id = link.getAttribute("href").slice(1);
+      const target = id ? document.getElementById(id) : document.body;
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target);
+    });
+  });
 }
 
 function initHeroTextCycle() {
