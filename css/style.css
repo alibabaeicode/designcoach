@@ -120,8 +120,8 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  padding-left: 12px;
-  border-left: 1px solid var(--hairline-light);
+  padding-inline-start: 12px;
+  border-inline-start: 1px solid var(--hairline-light);
 }
 
 .nav-links {
@@ -149,6 +149,17 @@ img { max-width: 100%; display: block; }
   padding: 11px 18px;
 }
 .nav-links a.btn-book:hover { background: var(--yellow); color: var(--ink) !important; text-decoration: none; }
+
+.lang-switch {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+.nav-links a.lang-switch:hover { background: var(--ink); color: var(--cream) !important; text-decoration: none; }
 
 .nav-toggle {
   display: none;
@@ -219,9 +230,9 @@ main { flex: 1; }
   flex-direction: column;
   justify-content: center;
   gap: 34px;
-  border-right: 1px solid var(--ink);
+  border-inline-end: 1px solid var(--ink);
 }
-.hero-grid:has(#system-loop) .hero-copy { border-right: 0; }
+.hero-grid:has(#system-loop) .hero-copy { border-inline-end: 0; }
 
 .eyebrow {
   font-family: var(--font-mono);
@@ -358,12 +369,12 @@ h1 {
 
 .stat-cell {
   padding: 40px 28px;
-  border-right: 1px solid var(--hairline-dark);
+  border-inline-end: 1px solid var(--hairline-dark);
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.stat-cell:last-child { border-right: 0; }
+.stat-cell:last-child { border-inline-end: 0; }
 
 .stat-value {
   font-family: var(--font-display);
@@ -465,13 +476,13 @@ a.meta-right:hover { color: var(--blue); }
 
 .offer-card {
   padding: 44px 36px;
-  border-right: 1px solid var(--ink);
+  border-inline-end: 1px solid var(--ink);
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
-.grid-2 > .offer-card:last-child { border-right: 0; }
+.grid-2 > .offer-card:last-child { border-inline-end: 0; }
 
 .offer-card--yellow {
   background: var(--yellow);
@@ -553,13 +564,13 @@ a.meta-right:hover { color: var(--blue); }
 
 .teach-card {
   padding: 36px 30px;
-  border-right: 1px solid var(--ink);
+  border-inline-end: 1px solid var(--ink);
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-.grid-3 > .teach-card:last-child { border-right: 0; }
+.grid-3 > .teach-card:last-child { border-inline-end: 0; }
 
 .teach-card .eyebrow { font-size: 11px; }
 
@@ -675,14 +686,14 @@ a.meta-right:hover { color: var(--blue); }
 
 .pillar-card {
   padding: 40px 34px;
-  border-right: 1px solid var(--ink);
+  border-inline-end: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.pillar-card:nth-child(2n) { border-right: 0; }
+.pillar-card:nth-child(2n) { border-inline-end: 0; }
 .pillar-card:nth-last-child(-n+2) { border-bottom: 0; }
 
 .pillar-num {
@@ -722,13 +733,13 @@ a.meta-right:hover { color: var(--blue); }
   font-size: 16px;
   line-height: 1.5;
   color: var(--body-copy);
-  padding-left: 16px;
+  padding-inline-start: 16px;
   position: relative;
 }
 .pillar-list li::before {
   content: "\00b7";
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
 }
 
 .cta-band {
@@ -767,7 +778,7 @@ a.meta-right:hover { color: var(--blue); }
 
 .about-copy {
   padding: 76px 40px;
-  border-right: 1px solid var(--ink);
+  border-inline-end: 1px solid var(--ink);
   display: flex;
   flex-direction: column;
   gap: 26px;
@@ -824,19 +835,19 @@ a.meta-right:hover { color: var(--blue); }
 .consulting-cell {
   padding: 26px 30px;
   border-bottom: 1px solid var(--ink);
-  border-right: 1px solid var(--ink);
+  border-inline-end: 1px solid var(--ink);
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-.consulting-grid > .consulting-cell:nth-child(2n) { border-right: 0; }
+.consulting-grid > .consulting-cell:nth-child(2n) { border-inline-end: 0; }
 
 /* An odd total count leaves the last cell alone in the final row —
    span it full-width so its divider isn't a half-width dangling line. */
 .consulting-grid > .consulting-cell:nth-child(odd):last-child {
   grid-column: 1 / -1;
-  border-right: 0;
+  border-inline-end: 0;
 }
 
 .consulting-cell .client-line {
@@ -880,12 +891,12 @@ a.meta-right:hover { color: var(--blue); }
   flex-direction: column;
   gap: 14px;
   padding: 34px;
-  border-right: 1px solid var(--ink);
+  border-inline-end: 1px solid var(--ink);
   background: #FFFFFF;
   text-decoration: none;
   color: inherit;
 }
-.writing-grid > .article-card:last-child { border-right: 0; }
+.writing-grid > .article-card:last-child { border-inline-end: 0; }
 .article-card:hover { background: var(--yellow); text-decoration: none; }
 
 .article-card .eyebrow { font-size: 11px; }
@@ -1285,33 +1296,33 @@ a.meta-right:hover { color: var(--blue); }
   }
 
   .hero-copy {
-    border-right: 0;
+    border-inline-end: 0;
     border-bottom: 1px solid var(--ink);
     min-height: calc(100svh - 72px);
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  .about-copy { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .about-copy { border-inline-end: 0; border-bottom: 1px solid var(--ink); }
   .book-intro { border-bottom: 1px solid var(--ink); }
 
   .grid-2 .offer-card,
   .grid-3 .teach-card {
-    border-right: 0 !important;
+    border-inline-end: 0 !important;
     border-bottom: 1px solid var(--ink);
   }
   .grid-2 > *:last-child,
   .grid-3 > *:last-child { border-bottom: 0; }
 
   .pillar-card {
-    border-right: 0 !important;
+    border-inline-end: 0 !important;
   }
   .pillar-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--ink); }
   .pillar-card:last-child { border-bottom: 0; }
 
-  .article-card { border-right: 0 !important; border-bottom: 1px solid var(--ink); }
+  .article-card { border-inline-end: 0 !important; border-bottom: 1px solid var(--ink); }
   .writing-grid > .article-card:last-child { border-bottom: 0; }
 
-  .consulting-cell { border-right: 0 !important; }
+  .consulting-cell { border-inline-end: 0 !important; }
 
   .process-row { flex-wrap: wrap; gap: 8px 20px; }
   .process-num { width: auto; font-size: 34px; }
@@ -1321,7 +1332,7 @@ a.meta-right:hover { color: var(--blue); }
   .book-email { display: none; }
 
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .stat-cell:nth-child(2n) { border-right: 0; }
+  .stat-cell:nth-child(2n) { border-inline-end: 0; }
   .stat-cell:nth-last-child(-n+2) { border-bottom: 0; }
   .stat-cell { border-bottom: 1px solid var(--hairline-dark); }
 
@@ -1338,7 +1349,7 @@ a.meta-right:hover { color: var(--blue); }
 
 @media (max-width: 560px) {
   .stats-grid { grid-template-columns: 1fr; }
-  .stat-cell { border-right: 0; border-bottom: 1px solid var(--hairline-dark); }
+  .stat-cell { border-inline-end: 0; border-bottom: 1px solid var(--hairline-dark); }
   .stat-cell:last-child { border-bottom: 0; }
 }
 
@@ -1365,3 +1376,72 @@ a.meta-right:hover { color: var(--blue); }
     transition: none;
   }
 }
+
+/* ==========================================================================
+   Persian (fa) localization — RTL
+   `<html lang="fa" dir="rtl">` on every fa/*.html page. `dir="rtl"` is what
+   gets the browser to auto-mirror grid/flex column order, default text
+   alignment, etc. for free; everything below only covers what the browser
+   doesn't flip on its own: the font, and the handful of physical (not
+   already-converted-to-logical) direction cues left in the base rules.
+   ========================================================================== */
+
+html[lang="fa"] {
+  --font-display: "Vazirmatn", sans-serif;
+  --font-body: "Vazirmatn", sans-serif;
+  --font-mono: "Vazirmatn", sans-serif;
+}
+
+html[lang="fa"] body {
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* Vazirmatn is a joined (cursive) script — any letter-spacing breaks the
+   letter joining, and uppercase is a no-op on Persian glyphs but would
+   still wrongly shout any embedded Latin (client names, tool names, the
+   brand name). Reset both site-wide for this scope rather than tracking
+   the 30+ individual rules that set them for the Latin/English version. */
+html[lang="fa"] * {
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+/* Headings stay bold per the design system's weight scale — only body
+   copy goes light. */
+html[lang="fa"] h1,
+html[lang="fa"] h2,
+html[lang="fa"] h3,
+html[lang="fa"] .footer-wordmark,
+html[lang="fa"] .brand-name,
+html[lang="fa"] .stat-value,
+html[lang="fa"] .pillar-num,
+html[lang="fa"] .process-num,
+html[lang="fa"] .col-index,
+html[lang="fa"] .offer-list li span,
+html[lang="fa"] .book-points li span,
+html[lang="fa"] .btn,
+html[lang="fa"] .btn-book,
+html[lang="fa"] .btn-invert,
+html[lang="fa"] .btn-submit,
+html[lang="fa"] .btn-secondary,
+html[lang="fa"] .btn-primary,
+html[lang="fa"] .btn-reset,
+html[lang="fa"] .lang-switch,
+html[lang="fa"] .topic-chip.is-selected {
+  font-weight: 700;
+}
+
+/* Arrow glyphs in fa markup are already written as ← (reading-direction
+   correct), so the hover nudge just needs to go the other way. */
+@media (hover: hover) {
+  html[lang="fa"] .btn:hover span,
+  html[lang="fa"] .btn-book:hover span,
+  html[lang="fa"] .btn-invert:hover span,
+  html[lang="fa"] .btn-submit:not(:disabled):hover span {
+    transform: translateX(-5px);
+  }
+}
+
+/* Numerals: Vazirmatn renders Persian digits (۰-۹) natively — no CSS
+   needed, just type them in the markup. */

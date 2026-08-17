@@ -10,6 +10,15 @@
  * the whole site smoother, weighted scrolling instead of the browser
  * default. initSmoothScroll() no-ops if the CDN script fails to load
  * or hasn't loaded yet — native scrolling just applies as the fallback.
+ *
+ * This file is shared verbatim by every page, English and Persian
+ * (fa/*.html) alike — never fork a language-specific copy. All
+ * user-facing validator/error text is sourced from data attributes on
+ * the markup (data-required-message, data-invalid-message, and the
+ * topics group's own data-required-message on [data-topics-group],
+ * plus data-network-error-message on [data-booking-form]), each with
+ * an English literal fallback so the fa/ pages just need the
+ * attribute added with Persian text — no JS changes.
  */
 
 function initScrollReveal() {
@@ -134,7 +143,7 @@ function buildValidators(form, topicsHidden) {
       wrapper,
       errorEl: wrapper && wrapper.querySelector(".field-error"),
       isValid: () => !!(topicsHidden && topicsHidden.value.trim()),
-      message: () => "Please select at least one topic.",
+      message: () => topicsGroup.dataset.requiredMessage || "Please select at least one topic.",
     });
   }
 
@@ -217,6 +226,7 @@ function initBookingForms() {
         })
         .catch(() => {
           errorBox.textContent =
+            wrapper.dataset.networkErrorMessage ||
             "Something went wrong sending this — please email alibabaeinote@gmail.com directly instead.";
           errorBox.classList.add("is-visible");
         })
