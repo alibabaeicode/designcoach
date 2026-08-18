@@ -162,6 +162,7 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   padding: 0 12px;
   border: 1px solid var(--ink);
+  background: var(--yellow);
   color: var(--ink);
 }
 .nav-links a.lang-switch:hover { background: var(--ink); color: var(--cream) !important; text-decoration: none; }
