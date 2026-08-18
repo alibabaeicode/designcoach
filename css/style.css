@@ -140,6 +140,12 @@ img { max-width: 100%; display: block; }
 
 .nav-links a[aria-current="page"] { color: var(--index-gold); }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
 .btn-book {
   display: inline-flex;
   align-items: center;
@@ -1332,6 +1338,9 @@ a.meta-right:hover { color: var(--blue); }
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
   .nav-toggle { display: flex; }
+
+  .nav-actions { width: 100%; gap: 12px; }
+  .nav-actions .btn-book { flex: 1; justify-content: center; }
 
   .hero-grid, .grid-2, .about-grid, .book-grid, .services-hero, .grid-3, .pillars-grid, .consulting-grid, .writing-grid {
     grid-template-columns: 1fr !important;
