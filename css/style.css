@@ -1532,6 +1532,14 @@ html[lang="fa"] .topic-chip.is-selected {
   font-weight: 700;
 }
 
+/* .process-num's hollow/outline style (invisible fill + thin stroke) is
+   legible for Latin "01"/"02" but turns Persian digits into an
+   unreadable smudge — their simpler curves need a solid fill instead. */
+html[lang="fa"] .process-num {
+  color: var(--index-gold);
+  -webkit-text-stroke: 0;
+}
+
 /* Arrow glyphs in fa markup are already written as ← (reading-direction
    correct), so the hover nudge just needs to go the other way. */
 @media (hover: hover) {
