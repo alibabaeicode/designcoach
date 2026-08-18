@@ -1560,5 +1560,26 @@ html[lang="fa"] .process-num {
   }
 }
 
+/* The hero word-cycle's mask is pinned to the line's bottom edge
+   (`vertical-align: bottom`), which lines up with Archivo's tighter
+   descender space but sits visibly lower than Kalameh's — the
+   cycling word reads a few pixels below "واقعاً" instead of sitting
+   on the same baseline. Nudge it back up for fa only. */
+html[lang="fa"] .cycle-word-mask {
+  vertical-align: baseline;
+  transform: translateY(0.04em);
+}
+
+/* English forces the cycle word onto its own line ≤900px so long
+   words like "DEFEND" don't overflow next to "ACTUALLY". Persian's
+   two-word verbs (دفاع کند, مقیاس کند...) read fine wrapping
+   naturally next to واقعاً instead, so fa opts back out of the
+   forced break and lets the browser wrap only if it actually needs to. */
+@media (max-width: 900px) {
+  html[lang="fa"] .cycle-break {
+    display: none;
+  }
+}
+
 /* Numerals: Kalameh renders Persian digits (۰-۹) natively — no CSS
    needed, just type them in the markup. */
