@@ -166,7 +166,14 @@ Two live-site experiments, both easy to revert, both **not** part of the locked 
 1. **Real multi-page routing** instead of a single-page app with client-side tab state. `index.html` / `services.html` / `about.html` / `book.html` are separate documents with real URLs (shareable, SEO-friendly, working back/forward), unlike the original Claude Design prototype which faked "pages" with JS state in one HTML file. Header/footer markup is duplicated across the four files as a result — there's no shared templating layer in a plain static site.
 2. **Nav active-page indicator** (`--index-gold` on the current page's link) — new, required by real routing; didn't exist in the single-page mock.
 3. **Two error colors, both deliberate**: submission-level failures stay yellow/ink (`.form-error`); field-level validation uses `--error` (red), scoped exactly as described in the color-token rule. Neither extends beyond its stated use.
-4. **External CDN dependency (Lenis)** — the only third-party script this project loads besides Google Fonts. Chosen over a hand-rolled scroll-smoothing script per the project's "don't reinvent what a small, well-tested library already solves" stance; kept to one narrow job (scroll feel) and always has a native-scroll fallback.
+4. **External CDN dependencies (Lenis, Plausible)** — the only third-party scripts this project loads besides Google Fonts. Lenis was chosen over a hand-rolled scroll-smoothing script per the project's "don't reinvent what a small, well-tested library already solves" stance; kept to one narrow job (scroll feel) and always has a native-scroll fallback.
+
+## Analytics
+
+- **Plausible** (`<script defer data-domain="alibabaei.info" src="https://plausible.io/js/script.js">`), placed in `<head>` right after the favicon/`apple-touch-icon` links, on all five pages (four English + `fa/index.html`). Same `data-domain="alibabaei.info"` on every page, including `fa/` — Plausible groups by domain, not path, so fa pageviews land in the same dashboard as English ones and are told apart by URL path.
+- Chosen over Mixpanel/GA4 for this site: it's a marketing/coaching site with one conversion action (the booking form), not a product with complex user funnels — Plausible's lightweight pageview + basic-event tracking (no cookies, no consent banner needed) is a better fit than Mixpanel's event/cohort/funnel machinery, which is built for logged-in product usage this site doesn't have.
+- Pageview tracking only for now — no custom events wired up. If goal tracking on the booking form submit (or CTA clicks) is wanted later, call `plausible('EventName')` from `js/main.js`'s existing submit handler rather than adding inline `onclick` tracking calls in markup.
+- Requires a `alibabaei.info` site to actually exist in a plausible.io account (or self-hosted instance) for data to start recording — the script is inert (loads, no-ops) until that's set up. Not yet done as of this note; do it once, from the account owner's login, not per-deploy.
 
 ## File map
 
