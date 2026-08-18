@@ -1277,6 +1277,24 @@ a.meta-right:hover { color: var(--blue); }
   color: var(--muted);
 }
 
+/* Required attribution badge for the licensed Kalameh font (fa/index.html
+   footer only) — keep the vendor's link/image/text, just fit it to the
+   footer's dark-muted style instead of leaving it unstyled. */
+.font-license-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 220px;
+  color: var(--dark-muted-2) !important;
+}
+.font-license-badge:hover { color: var(--yellow) !important; text-decoration: none; }
+.font-license-badge img { flex: none; border-radius: 4px; }
+.font-license-badge span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
 /* ==========================================================================
    Responsive
    ========================================================================== */
@@ -1405,9 +1423,11 @@ a.meta-right:hover { color: var(--blue); }
    ========================================================================== */
 
 /* Self-hosted (not Google Fonts) — proprietary/commercial font, licensed
-   from fontiran.com. FontLicense.txt sits next to the font files per the
-   license's own requirement; the 6-digit license code belongs in that
-   file once issued. Only the four weights actually used are shipped. */
+   from fontiran.com under license code 1W30FEGU (see FontLicense.txt
+   next to the font files, and the required attribution badge in
+   fa/index.html's footer — both are part of the license terms, keep
+   them if this font ever moves or gets relicensed). Only the four
+   weights actually used are shipped. */
 @font-face {
   font-family: "KalamehWeb";
   font-style: normal;
