@@ -170,10 +170,18 @@ Two live-site experiments, both easy to revert, both **not** part of the locked 
 
 ## Analytics
 
-- **Plausible** (`<script defer data-domain="alibabaei.info" src="https://plausible.io/js/script.js">`), placed in `<head>` right after the favicon/`apple-touch-icon` links, on all five pages (four English + `fa/index.html`). Same `data-domain="alibabaei.info"` on every page, including `fa/` — Plausible groups by domain, not path, so fa pageviews land in the same dashboard as English ones and are told apart by URL path.
+- **Plausible**, placed in `<head>` right after the favicon/`apple-touch-icon` links, on all five pages (four English + `fa/index.html`) — identical snippet on every page, including `fa/` (Plausible groups by domain, not path, so fa pageviews land in the same dashboard as English ones and are told apart by URL path):
+  ```html
+  <!-- Privacy-friendly analytics by Plausible -->
+  <script async src="https://plausible.io/js/pa-WlhEf1fv7_g-lryCSWBUS.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
+  ```
+  This is Plausible's per-site script (the `pa-WlhEf1fv7_g-lryCSWBUS.js` URL is tied to the `alibabaei.info` site specifically, generated from the account dashboard) — not the older generic `data-domain` embed. If the site is ever recreated in Plausible (new account, self-hosted migration, etc.), re-copy the fresh snippet from the dashboard rather than reusing this URL; the old `data-domain="alibabaei.info" src=".../script.js"` form is deprecated for this account but still works for others, so don't "simplify" back to it here.
 - Chosen over Mixpanel/GA4 for this site: it's a marketing/coaching site with one conversion action (the booking form), not a product with complex user funnels — Plausible's lightweight pageview + basic-event tracking (no cookies, no consent banner needed) is a better fit than Mixpanel's event/cohort/funnel machinery, which is built for logged-in product usage this site doesn't have.
 - Pageview tracking only for now — no custom events wired up. If goal tracking on the booking form submit (or CTA clicks) is wanted later, call `plausible('EventName')` from `js/main.js`'s existing submit handler rather than adding inline `onclick` tracking calls in markup.
-- Requires a `alibabaei.info` site to actually exist in a plausible.io account (or self-hosted instance) for data to start recording — the script is inert (loads, no-ops) until that's set up. Not yet done as of this note; do it once, from the account owner's login, not per-deploy.
 
 ## File map
 
