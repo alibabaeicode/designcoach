@@ -330,7 +330,7 @@ h1 {
    page instead of the split copy/portrait grid. */
 
 .landing-hero {
-  padding: 100px 40px 88px;
+  padding: 76px 40px 88px;
   border-bottom: 1px solid var(--ink);
   display: flex;
   flex-direction: column;
