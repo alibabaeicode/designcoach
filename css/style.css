@@ -1236,10 +1236,25 @@ a.meta-right:hover { color: var(--blue); }
   gap: 12px;
 }
 
+.footer-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  font-size: clamp(32px, 4.4vw, 60px);
+}
+
+.footer-mark {
+  width: 0.85em;
+  height: 0.85em;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .footer-wordmark {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(32px, 4.4vw, 60px);
+  font-size: inherit;
   letter-spacing: -0.03em;
   text-transform: uppercase;
 }
