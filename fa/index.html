@@ -58,19 +58,35 @@
     <a href="index.html" class="brand">
       <img src="../assets/logo-mark.jpg" alt="" class="brand-mark">
       <span class="brand-name">علی بابایی</span>
-      <span class="brand-tag">نوآوری انسان‌محور</span>
+      <span class="brand-tag">مربی طراحی / مشاور</span>
     </a>
-    <nav class="nav-links">
-      <a href="#services">خدمات</a>
-      <div class="nav-actions">
-        <a href="#book" class="btn-book">رزرو مشاوره<span>←</span></a>
-        <a href="../index.html" class="lang-switch">EN</a>
-      </div>
-    </nav>
-    <button class="nav-toggle" aria-label="باز و بسته کردن منو" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="menu-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="site-menu">
+      <span class="menu-trigger-bars"><span></span><span></span></span>
+      <span class="menu-trigger-label">منو</span>
     </button>
   </header>
+
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <div class="site-menu-inner pad-lg">
+      <div class="site-menu-head">
+        <span class="site-menu-index">فهرست</span>
+        <button class="site-menu-close" aria-label="بستن منو">
+          <span>بستن</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+      <nav class="site-menu-links">
+        <a href="index.html" aria-current="page">خانه</a>
+        <a href="#services">خدمات</a>
+        <a href="#book">رزرو مشاوره</a>
+        <a href="../index.html">English</a>
+      </nav>
+      <div class="site-menu-foot">
+        <span>۲۰۰۵ — ۲۰۲۶</span>
+        <a href="mailto:alibabaeinote@gmail.com">alibabaeinote@gmail.com</a>
+      </div>
+    </div>
+  </div>
 
   <main>
 

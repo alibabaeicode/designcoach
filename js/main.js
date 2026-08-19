@@ -101,19 +101,35 @@ function initHeroTextCycle() {
   }, 3200);
 }
 
-function initNav() {
-  const toggle = document.querySelector(".nav-toggle");
-  const links = document.querySelector(".nav-links");
-  if (!toggle || !links) return;
-  toggle.addEventListener("click", () => {
-    const open = links.classList.toggle("nav-open");
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+function initSiteMenu() {
+  const trigger = document.querySelector(".menu-trigger");
+  const menu = document.querySelector(".site-menu");
+  const closeBtn = document.querySelector(".site-menu-close");
+  if (!trigger || !menu) return;
+
+  function open() {
+    menu.classList.add("is-open");
+    menu.setAttribute("aria-hidden", "false");
+    trigger.setAttribute("aria-expanded", "true");
+    document.documentElement.classList.add("menu-open");
+    document.body.classList.add("menu-open");
+  }
+
+  function close() {
+    menu.classList.remove("is-open");
+    menu.setAttribute("aria-hidden", "true");
+    trigger.setAttribute("aria-expanded", "false");
+    document.documentElement.classList.remove("menu-open");
+    document.body.classList.remove("menu-open");
+  }
+
+  trigger.addEventListener("click", open);
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  menu.querySelectorAll(".site-menu-links a").forEach((a) => {
+    a.addEventListener("click", close);
   });
-  links.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", () => {
-      links.classList.remove("nav-open");
-      toggle.setAttribute("aria-expanded", "false");
-    });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu.classList.contains("is-open")) close();
   });
 }
 
@@ -263,7 +279,7 @@ function initBookingForms() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  initNav();
+  initSiteMenu();
   initBookingForms();
   initScrollReveal();
   initSmoothScroll();

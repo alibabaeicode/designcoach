@@ -6,7 +6,7 @@
 
   /* ================= configuration ================= */
 
-  var PALETTE = { accent: '#FFD400', ink: '#121212', paper: 'transparent' };
+  var PALETTE = { accent: '#2F5DFA', ink: '#0B0B10', paper: 'transparent' };
   var FAINT = PALETTE.ink + '2E';
   var SHOW_PULSES = true;
   var DENSITY = 1; // 0.3–1, thins out traces/arcs if you want a lighter look

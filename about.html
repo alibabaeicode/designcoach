@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://alibabaei.info/assets/portrait-home.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -62,21 +62,36 @@
     <a href="index.html" class="brand">
       <img src="assets/logo-mark.jpg" alt="" class="brand-mark">
       <span class="brand-name">Ali Babaei</span>
-      <span class="brand-tag">Human Centred Innovation</span>
+      <span class="brand-tag">Design coach / Consultant</span>
     </a>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="about.html" aria-current="page">About</a>
-      <div class="nav-actions">
-        <a href="book.html" class="btn-book">Book a session<span>→</span></a>
-        <a href="fa/" class="lang-switch">فا</a>
-      </div>
-    </nav>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+    <button class="menu-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="site-menu">
+      <span class="menu-trigger-bars"><span></span><span></span></span>
+      <span class="menu-trigger-label">Menu</span>
     </button>
   </header>
+
+  <div class="site-menu" id="site-menu" aria-hidden="true">
+    <div class="site-menu-inner pad-lg">
+      <div class="site-menu-head">
+        <span class="site-menu-index">Index</span>
+        <button class="site-menu-close" aria-label="Close menu">
+          <span>Close</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+      <nav class="site-menu-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="book.html">Book a session</a>
+        <a href="fa/">فا · Persian</a>
+      </nav>
+      <div class="site-menu-foot">
+        <span>2005 — 2026</span>
+        <a href="mailto:alibabaeinote@gmail.com">alibabaeinote@gmail.com</a>
+      </div>
+    </div>
+  </div>
 
   <main>
 
