@@ -67,16 +67,7 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background-color: #FFFFFF;
-  background-image:
-    radial-gradient(circle, rgba(72, 128, 232, 0.30) 0%, rgba(72, 128, 232, 0) 72%),
-    radial-gradient(circle, rgba(140, 110, 255, 0.24) 0%, rgba(140, 110, 255, 0) 72%),
-    radial-gradient(circle, rgba(72, 168, 232, 0.22) 0%, rgba(72, 168, 232, 0) 72%),
-    radial-gradient(circle, rgba(140, 110, 255, 0.20) 0%, rgba(140, 110, 255, 0) 72%);
-  background-repeat: no-repeat;
-  background-size: 95vmax 95vmax, 90vmax 90vmax, 95vmax 95vmax, 90vmax 90vmax;
-  background-position: -10% 2%, 106% 28%, -6% 60%, 104% 88%;
-  animation: aurora-drift 30s ease-in-out infinite alternate;
+  background-color: var(--cream);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 18px;
@@ -86,16 +77,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes aurora-drift {
-  0%   { background-position: -10% 2%,   106% 28%,  -6% 60%,   104% 88%; }
-  25%  { background-position:  -2% 9%,    94% 38%,   4% 50%,    94% 98%; }
-  50%  { background-position:   6% -4%,   86% 16%,  12% 70%,   106% 76%; }
-  75%  { background-position:  -8% 8%,   102% 34%,  -4% 54%,   98% 94%; }
-  100% { background-position: -10% 2%,   106% 28%,  -6% 60%,   104% 88%; }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  body { animation: none; }
   html { scroll-behavior: auto; }
 }
 
