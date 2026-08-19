@@ -82,13 +82,16 @@ body {
 }
 
 /* Subtle full-page grain/noise texture, exact spec from the reference's
-   .grain utility — kept as a fixed, non-interactive overlay so it doesn't
-   affect layout or scroll performance. */
+   .grain utility — a fixed, non-interactive overlay painted ABOVE all
+   page content (including the opaque header and white cards), not
+   hidden behind them. z-index only needs to beat .site's (2), since
+   everything inside .site — header, menu overlay, cards — shares that
+   one stacking context regardless of their own internal z-indices. */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 1;
+  z-index: 5;
   pointer-events: none;
   background-image: radial-gradient(rgba(10, 10, 11, 0.04) 1px, transparent 1px);
   background-size: 4px 4px;
