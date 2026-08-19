@@ -394,9 +394,8 @@ h1 {
   text-wrap: balance;
 }
 
-.hero-h1 { font-size: 60px; }
-@media (min-width: 768px) { .hero-h1 { font-size: 60px; } }
-@media (min-width: 1024px) { .hero-h1 { font-size: 187px; line-height: 0.85; } }
+.hero-h1 { font-size: 16vw; }
+@media (min-width: 768px) { .hero-h1 { font-size: 13vw; } }
 
 .mark-yellow {
   background: var(--accent-pale);
@@ -548,12 +547,14 @@ h1 {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
 }
 
 .stat-cell {
   padding: 24px 32px;
-  border: 1px solid var(--border-light);
+  background: var(--white);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -583,24 +584,27 @@ h1 {
 
 .marquee-section {
   overflow: hidden;
-  padding: 22px 0;
-  background: var(--cream);
-  border-top: 1px solid var(--border-light);
+  padding: 20px 0;
+  background: var(--ink);
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  gap: 44px;
+  gap: 32px;
   animation: marquee 40s linear infinite;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--muted);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  color: #fff;
 }
 .marquee-track span::after {
   content: "\2726";
-  margin-inline-start: 44px;
-  color: var(--border-soft);
+  margin-inline-start: 32px;
+  color: var(--accent);
 }
 .marquee-track span:last-child::after { content: none; }
 
@@ -653,13 +657,14 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 
 .grid-2 {
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 1px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
   margin-top: 28px;
 }
 
 .offer-card {
   padding: 32px 24px;
-  border: 1px solid var(--border-soft);
   background: var(--white);
   display: flex;
   flex-direction: column;
@@ -747,12 +752,13 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 
 .grid-3 {
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 1px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
 }
 
 .teach-card {
   padding: 24px;
-  border: 1px solid var(--border-soft);
   background: var(--white);
   display: flex;
   flex-direction: column;
@@ -798,7 +804,9 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 .process-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 1px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
 }
 
 .process-row {
@@ -806,7 +814,6 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
   flex-direction: column;
   gap: 14px;
   padding: 24px;
-  border: 1px solid var(--border-soft);
   background: var(--white);
 }
 
@@ -863,15 +870,15 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 
 .pillars-grid {
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 1px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
   max-width: var(--container-max);
   margin-inline: auto;
-  padding: 0 40px 96px;
 }
 
 .pillar-card {
   padding: 32px 24px;
-  border: 1px solid var(--border-soft);
   background: var(--white);
   display: flex;
   flex-direction: column;
@@ -1013,16 +1020,23 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 
 .consulting-grid {
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 1px;
+  background: var(--border-soft);
+  border: 1px solid var(--border-soft);
 }
 
 .consulting-cell {
   padding: 24px;
-  border: 1px solid var(--border-soft);
   background: var(--white);
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+/* An odd item count leaves the last cell alone in its row — span it full
+   width instead of leaving an empty grid track showing the container's
+   hairline-grid background color through as a blank box. */
+.consulting-cell:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .consulting-cell .client-line {
@@ -1489,7 +1503,6 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 @media (max-width: 1023px) {
   .grid-3, .process-list { grid-template-columns: repeat(2, 1fr) !important; }
   .section { padding: 48px 32px; }
-  .hero-h1 { font-size: 60px; }
 }
 
 @media (max-width: 900px) {
@@ -1507,15 +1520,11 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 
-  .pillars-grid { padding: 0 24px 48px; }
-
   .hero-portrait { display: none; }
   .book-email { display: none; }
 
   .pad-lg, .site-header { padding-left: 24px; padding-right: 24px; }
   .section { padding: 24px; }
-
-  h1 { font-size: clamp(40px, 12vw, 60px) !important; }
 
   .field-row { grid-template-columns: 1fr; }
 
