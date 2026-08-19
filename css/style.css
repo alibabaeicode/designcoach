@@ -347,7 +347,7 @@ html.menu-open, body.menu-open { overflow: hidden; }
 
 main { flex: 1; }
 
-.hero-grid, .about-grid, .book-grid, .services-hero, .grid-2, .grid-3, .pillars-grid, .consulting-grid, .writing-grid { display: grid; }
+.about-grid, .book-grid, .services-hero, .grid-2, .pillars-grid, .consulting-grid, .writing-grid { display: grid; }
 
 /* Content max-width, centered — applied to the light-background content
    sections. Dark full-bleed bands (footer, booking, CTA band) keep their
@@ -355,27 +355,9 @@ main { flex: 1; }
    width via the same horizontal padding, not a hard max-width, since
    splitting "full-bleed background" from "centered inner content" for
    those would need a wrapper div this static site's markup doesn't have. */
-.hero-grid, .section, .about-grid, .services-hero, .landing-hero, .stats-band > .stats-grid {
+.section, .about-grid, .services-hero, .landing-hero, .stats-band > .stats-grid {
   max-width: var(--container-max);
   margin-inline: auto;
-}
-
-/* ---------- Home: hero ---------- */
-
-.hero-grid {
-  grid-template-columns: 1.15fr 0.85fr;
-}
-@media (min-width: 901px) {
-  .hero-grid:has(#system-loop) { min-height: calc(100vh - 65px); }
-  .hero-grid:has(#system-loop) .hero-copy { padding-bottom: 88px; }
-}
-
-.hero-copy {
-  padding: 96px 40px 56px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 32px;
 }
 
 .eyebrow {
@@ -489,35 +471,35 @@ h1 {
 .landing-hero .intro-copy { margin: 0 auto; text-align: center; }
 .landing-hero .cta-row { justify-content: center; }
 
-.hero-portrait {
-  background: var(--bg-soft);
-  display: flex;
-  align-items: center;
+/* Home only: the hero fills the viewport and carries a scroll hint,
+   matching the reference's centred, illustration-free hero exactly —
+   no split layout, no side portrait/animation. */
+.landing-hero--full {
+  position: relative;
+  min-height: 100svh;
   justify-content: center;
-  overflow: hidden;
-  min-height: 520px;
-  margin: 24px 40px 24px 0;
+  padding-top: 96px;
+  padding-bottom: 96px;
 }
-@media (min-width: 901px) {
-  .hero-portrait:has(#system-loop) { min-height: 680px; }
-}
-.hero-portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
-}
-.hero-portrait:has(#system-loop) { background: transparent; }
 
-#system-loop {
-  width: 100%;
-  height: 100%;
-  background: transparent;
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-40);
+  animation: scroll-hint-bounce 1.8s ease-in-out infinite;
 }
-#system-loop svg {
-  display: block;
-  width: 100%;
-  height: 100%;
+@keyframes scroll-hint-bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-hint { animation: none; }
 }
 
 /* ---------- Hero load-in animation ---------- */
@@ -526,16 +508,16 @@ h1 {
   from { opacity: 0; transform: translateY(22px); filter: blur(8px); }
   to   { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
-.hero-copy > *, .landing-hero > * {
+.landing-hero > *:not(.hero-scroll-hint) {
   animation: hero-in 0.9s var(--ease-lux) both;
 }
-.hero-copy > *:nth-child(1), .landing-hero > *:nth-child(1) { animation-delay: 0s; }
-.hero-copy > *:nth-child(2), .landing-hero > *:nth-child(2) { animation-delay: 0.1s; }
-.hero-copy > *:nth-child(3), .landing-hero > *:nth-child(3) { animation-delay: 0.24s; }
-.hero-copy > *:nth-child(4), .landing-hero > *:nth-child(4) { animation-delay: 0.36s; }
+.landing-hero > *:nth-child(1) { animation-delay: 0s; }
+.landing-hero > *:nth-child(2) { animation-delay: 0.1s; }
+.landing-hero > *:nth-child(3) { animation-delay: 0.24s; }
+.landing-hero > *:nth-child(4) { animation-delay: 0.36s; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-copy > *, .landing-hero > * { animation: none; }
+  .landing-hero > *:not(.hero-scroll-hint) { animation: none; }
 }
 
 /* ---------- Stats band ---------- */
@@ -748,34 +730,44 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 .btn-invert:hover { background: var(--accent-hover); color: #fff; text-decoration: none; }
 .btn-invert:active { background: var(--accent-active); }
 
-/* ---------- Teaching & mentoring (3-up grid) ---------- */
+/* ---------- Teaching & mentoring (row list) ---------- */
 
-.grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border-soft);
-  border: 1px solid var(--border-soft);
-}
+.teach-section { background: var(--cream); }
 
-.teach-card {
-  padding: 24px;
-  background: var(--white);
+.teach-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
 }
 
-.teach-card .eyebrow { font-size: 12px; }
+.teach-row {
+  display: grid;
+  grid-template-columns: 0.8fr 1.4fr 1.8fr;
+  gap: 32px;
+  padding: 40px 0;
+  border-top: 1px solid var(--border-soft);
+  transition: background-color 0.2s ease;
+}
+.teach-row:hover { background: var(--white); }
 
-.teach-card h3 {
+.teach-period {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.teach-main h3 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 21px;
+  font-size: 24px;
   letter-spacing: -0.01em;
 }
 
 .teach-role {
+  display: block;
+  margin-top: 8px;
   font-size: 14px;
   font-weight: 600;
   color: var(--ink);
@@ -1501,26 +1493,28 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
    ========================================================================== */
 
 @media (max-width: 1023px) {
-  .grid-3, .process-list { grid-template-columns: repeat(2, 1fr) !important; }
+  .process-list { grid-template-columns: repeat(2, 1fr) !important; }
   .section { padding: 48px 32px; }
 }
 
 @media (max-width: 900px) {
-  .hero-grid, .grid-2, .about-grid, .book-grid, .services-hero, .grid-3, .pillars-grid, .consulting-grid, .writing-grid {
+  .grid-2, .about-grid, .book-grid, .services-hero, .pillars-grid, .consulting-grid, .writing-grid {
     grid-template-columns: 1fr !important;
   }
   .process-list { grid-template-columns: 1fr !important; }
 
-  .hero-copy {
-    min-height: calc(100svh - 65px);
-    padding: 40px 24px;
+  .teach-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 28px 0;
   }
 
-  .hero-portrait, .about-portrait { margin: 24px 20px; }
+  .landing-hero--full { padding: 40px 24px; }
+
+  .about-portrait { margin: 24px 20px; }
 
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 
-  .hero-portrait { display: none; }
   .book-email { display: none; }
 
   .pad-lg, .site-header { padding-left: 24px; padding-right: 24px; }
