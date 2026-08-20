@@ -145,7 +145,7 @@ function ArrowUpRightIcon() {
 
 function Header({ onOpen, onClose, scrolled, homeHref, services }) {
   return <header className={`site-header ${services ? "services-site-header" : ""} ${scrolled ? "is-scrolled" : ""}`}>
-    <a className="brand" href={homeHref} onClick={onClose}><span className="brand-name">Ali Babaei</span><span className="brand-dot">•</span><span className="brand-role">Design Coach / Consultant</span></a>
+    <a className="brand" href={homeHref} onClick={onClose}><img className="brand-logo" src="/assets/ali-babaei-logo.png" alt="Ali Babaei" /><span className="brand-name">Ali Babaei</span><span className="brand-dot">•</span><span className="brand-role">Design Coach / Consultant</span></a>
     <button className="menu-button" type="button" onClick={onOpen}><span className="menu-lines"><span /><span /></span>Menu</button>
     <div className={`scroll-progress ${scrolled ? "is-visible" : ""}`} aria-hidden="true" />
   </header>;
