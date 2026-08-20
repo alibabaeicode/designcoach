@@ -72,6 +72,6 @@ test("keeps the brand logo on a stable public asset URL", async () => {
   const scripts = assetNames.filter((name) => name.endsWith(".js"));
   const bundles = await Promise.all(scripts.map((name) => readFile(new URL(`../dist/client/assets/${name}`, import.meta.url), "utf8")));
 
-  assert.ok(bundles.some((bundle) => bundle.includes("/assets/ali-babaei-logo.png")));
+  assert.ok(bundles.some((bundle) => bundle.includes("/assets/ali-babaei-logo-v2.png")));
   assert.ok(bundles.every((bundle) => !bundle.includes("ali-babaei-logo-fj5Ez689.png")));
 });
