@@ -33,7 +33,7 @@ Home
 ├── Teaching & mentoring: track record
 ├── Process: what happens first
 └── Direct access: low-friction contact
-    └── Footer: identity, location, domain
+    └── Footer: identity + channels
 ```
 
 The home page is a narrative, not a catalogue. It moves from promise → proof → offer → process → action.
@@ -101,7 +101,35 @@ ContactChannel = {
 }
 ```
 
-## 6. Shared semantic vocabulary
+## 6. Booking content architecture
+
+`book.html` qualifies a request without turning the visitor into a lead-form record. It has one job: capture enough context to schedule a useful first conversation.
+
+```text
+Booking
+├── Intent: free 45-minute planning call
+├── Contact details: name, work email, organisation
+├── Context: focus area + concrete challenge
+├── Submit state: requested / received
+└── Footer: shared identity + channels
+```
+
+## 7. Shared footer content contract
+
+Every route, including `fa/`, carries the same English footer content in the same order:
+
+```text
+Footer
+├── Brand: Ali Babaei
+├── Positioning: Design coaching · UX consulting · Tehran & remote
+├── Direct channel: alibabaeinote@gmail.com
+├── Social channels: LinkedIn, Dribbble, Behance, Medium
+└── Legal: © 2026 · All rights reserved
+```
+
+The footer is a brand-and-channel module, not a second CTA or a place for page-specific content. A page may introduce a new contact channel only after it is added to `SiteFooter`, the static footer adapters, and the design-system footer contract together.
+
+## 8. Shared semantic vocabulary
 
 Use these names in content, code, and design discussions:
 
@@ -118,7 +146,7 @@ Use these names in content, code, and design discussions:
 
 Avoid vague labels such as `misc`, `content block`, `feature`, `stuff`, or `other` in new content models.
 
-## 7. Design-system mapping
+## 9. Design-system mapping
 
 | Content meaning | Visual module | Primary tokens |
 | --- | --- | --- |
@@ -129,11 +157,11 @@ Avoid vague labels such as `misc`, `content block`, `feature`, `stuff`, or `othe
 | Ordered start | Process | Number scale, three-column grid, hover state |
 | Low-friction action | Contact / CTA | Dark surface, on-dark text, form and button tokens |
 | External reading | Article card | Surface, border hover, article type scale |
-| Identity and channels | Footer | Mono metadata, dark/light footer contract |
+| Identity and channels | Footer | Shared dark footer, display identity, channel metadata |
 
 When content changes, preserve the meaning of the region before preserving its current words. If a new item does not fit one of these roles, define the new role before styling it.
 
-## 8. Content writing rules
+## 10. Content writing rules
 
 - Use direct, specific language: product problem, team capability, user journey, outcome.
 - Avoid generic consultancy claims such as “innovative solutions” without a concrete practice or result.
@@ -143,7 +171,7 @@ When content changes, preserve the meaning of the region before preserving its c
 - One page has one primary action. Secondary actions support navigation or evidence.
 - Keep current source language in English unless a Persian page is explicitly being authored; do not mix languages inside one content entity.
 
-## 9. Change contract
+## 11. Change contract
 
 Before adding a page or section, answer:
 
