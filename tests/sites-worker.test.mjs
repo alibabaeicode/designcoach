@@ -78,6 +78,13 @@ test("keeps the brand logo on a stable public asset URL", async () => {
   assert.deepEqual(logo.subarray(1, 4).toString("ascii"), "PNG");
 });
 
+test("keeps the English About logo prominent above the intro", async () => {
+  const stylesheet = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.match(stylesheet, /\.about-logo\{width:128px;height:128px/);
+  assert.match(stylesheet, /\.about-logo\{width:96px;height:96px/);
+});
+
 test("ships a focused Persian header with an English language switch", async () => {
   const persianPage = await readFile(new URL("../dist/client/fa/index.html", import.meta.url), "utf8");
   const stylesheet = await readFile(new URL("../dist/client/css/style.css", import.meta.url), "utf8");
