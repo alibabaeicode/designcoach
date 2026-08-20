@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import logoUrl from "./ali-babaei-logo.png";
+const logoUrl = "/assets/ali-babaei-logo.png?rev=20260821";
 
 const companies = ["Telewebion", "Behsazan Mellat", "Skyroom", "BimeBazar", "BeAndam", "Persis Pooya Data", "Quera", "Seram Pakhsh", "Pezeshk Khoob", "Noban", "Sanjagh", "Ankuy"];
 const focusAreas = ["Conversion", "Retention", "Usability audit", "Team coaching", "Design thinking workshop", "Hiring & team growth"];

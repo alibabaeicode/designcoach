@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access } from "node:fs/promises";
+import { access, readdir, readFile } from "node:fs/promises";
 import test from "node:test";
 import worker from "../worker/index.js";
 
@@ -65,4 +65,13 @@ test("emits the files required by Sites packaging", async () => {
   await access(new URL("../dist/client/index.html", import.meta.url));
   await access(new URL("../dist/server/index.js", import.meta.url));
   await access(new URL("../dist/.openai/hosting.json", import.meta.url));
+});
+
+test("keeps the brand logo on a stable public asset URL", async () => {
+  const assetNames = await readdir(new URL("../dist/client/assets/", import.meta.url));
+  const scripts = assetNames.filter((name) => name.endsWith(".js"));
+  const bundles = await Promise.all(scripts.map((name) => readFile(new URL(`../dist/client/assets/${name}`, import.meta.url), "utf8")));
+
+  assert.ok(bundles.some((bundle) => bundle.includes("/assets/ali-babaei-logo.png")));
+  assert.ok(bundles.every((bundle) => !bundle.includes("ali-babaei-logo-fj5Ez689.png")));
 });
