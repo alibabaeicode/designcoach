@@ -1473,6 +1473,36 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
   color: var(--dark-muted-2);
 }
 
+/* Persian landing page: use the exact compact English footer bar. */
+.site-footer--bar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0;
+  padding: 32px 48px 40px;
+  border-top: 1px solid rgba(248, 249, 250, 0.18);
+  color: rgba(248, 249, 250, 0.4);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  direction: ltr;
+}
+
+@media (max-width: 767px) {
+  .site-footer--bar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 30px 24px 32px;
+    text-align: center;
+  }
+}
+
 /* Required attribution badge for the licensed Kalameh font (fa/index.html
    footer only) — keep the vendor's link/image/text, just fit it to the
    footer's dark style instead of leaving it unstyled. */
@@ -1678,6 +1708,11 @@ html[lang="fa"] .landing-hero .hero-h1 {
 
 html[lang="fa"] .form-footer {
   border-top: 0;
+}
+
+html[lang="fa"] .site-footer--bar {
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
 }
 
 @media (max-width: 900px) {

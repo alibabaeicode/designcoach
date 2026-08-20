@@ -91,4 +91,7 @@ test("ships a focused Persian header with an English language switch", async () 
   assert.match(stylesheet, /font-size:\s*clamp\(44px, 4vw, 72px\)/);
   assert.match(stylesheet, /font-size:\s*clamp\(20px, 5\.5vw, 24px\)/);
   assert.match(stylesheet, /html\[lang="fa"\] \.form-footer\s*\{\s*border-top:\s*0/);
+  assert.match(persianPage, /<footer class="site-footer site-footer--bar">\s*<span>© 2005—2026 Ali Babaei<\/span>\s*<span>Tehran · Remote worldwide<\/span>\s*<span>alibabaei\.info<\/span>\s*<\/footer>/);
+  assert.doesNotMatch(persianPage, /footer-brand|footer-meta|font-license-badge/);
+  assert.match(stylesheet, /\.site-footer--bar/);
 });
