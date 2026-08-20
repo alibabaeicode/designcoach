@@ -110,6 +110,13 @@ Layout rules:
 - Blur is reserved for the scroll-aware header and scroll transition; do not add blur to cards or body copy.
 - The blue radial glow is reserved for the contact section and must remain behind content and pointer-inert.
 
+### 2.6 Brand mark
+
+- The canonical portrait mark is `public/assets/ali-babaei-logo.png`.
+- The main header renders it as a circular `30px` mark on desktop and `26px` on mobile, followed by the wordmark and role label.
+- Legacy `book.html` and `fa/` headers and footers use the same asset so the brand remains consistent across entry points.
+- The same asset is the PNG favicon and Apple touch icon. Do not substitute the old logo mark or crop the image into a different shape without updating this contract.
+
 ## 3. Motion and interaction contract
 
 | Interaction | Behaviour |
