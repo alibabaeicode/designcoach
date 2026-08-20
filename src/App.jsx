@@ -145,7 +145,7 @@ function ArrowUpRightIcon() {
 
 function Header({ onOpen, onClose, scrolled, homeHref, services }) {
   return <header className={`site-header ${services ? "services-site-header" : ""} ${scrolled ? "is-scrolled" : ""}`}>
-    <a className="brand" href={homeHref} onClick={onClose}><img className="brand-logo" src="/assets/ali-babaei-logo.png" alt="Ali Babaei" /><span className="brand-name">Ali Babaei</span><span className="brand-dot">•</span><span className="brand-role">Design Coach / Consultant</span></a>
+    <a className="brand" href={homeHref} onClick={onClose}><img className="brand-logo" src="assets/ali-babaei-logo.png" alt="Ali Babaei" /><span className="brand-name">Ali Babaei</span><span className="brand-dot">•</span><span className="brand-role">Design Coach / Consultant</span></a>
     <button className="menu-button" type="button" onClick={onOpen}><span className="menu-lines"><span /><span /></span>Menu</button>
     <div className={`scroll-progress ${scrolled ? "is-visible" : ""}`} aria-hidden="true" />
   </header>;
@@ -205,13 +205,13 @@ function AboutPage() {
   return <main className="about-page" id="top">
     <section className="about-intro about-reveal" data-reveal>
       <div className="about-copy">
+        <img className="about-logo" src="assets/ali-babaei-logo.png" alt="Ali Babaei" />
         <span className="eyebrow">About</span>
         <h1>Ali Babaei</h1>
         <p>Design mentor and UX consultant with 20+ years in digital product design and eight years spent building designers and design practices. Architect and lead instructor of 40+ product design cohorts across academies, universities and startup accelerators, and advisor to 15+ product teams on usability, research practice and design process.</p>
         <p>Experience spans streaming, fintech, e-commerce, healthtech, edtech and enterprise software. My coaching style is contextual and action-oriented: turning abstract design principles into decisions teams can ship.</p>
         <div className="about-tools"><span className="eyebrow">Tools</span><span>Figma · FigJam · Clarity · Maze · Framer · Linear · Loom · Miro · Notion · Jira</span></div>
       </div>
-      <div className="about-portrait"><img src="/assets/portrait-home.jpg" alt="Ali Babaei" /></div>
     </section>
 
     <AboutRowSection title="Consulting selection" meta="2017 — Present">
