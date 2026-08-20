@@ -71,7 +71,20 @@ test("keeps the brand logo on a stable public asset URL", async () => {
   const assetNames = await readdir(new URL("../dist/client/assets/", import.meta.url));
   const scripts = assetNames.filter((name) => name.endsWith(".js"));
   const bundles = await Promise.all(scripts.map((name) => readFile(new URL(`../dist/client/assets/${name}`, import.meta.url), "utf8")));
+  const logo = await readFile(new URL("../dist/client/assets/ali-babaei-logo-v2.png", import.meta.url));
 
   assert.ok(bundles.some((bundle) => bundle.includes("/assets/ali-babaei-logo-v2.png")));
   assert.ok(bundles.every((bundle) => !bundle.includes("ali-babaei-logo-fj5Ez689.png")));
+  assert.deepEqual(logo.subarray(1, 4).toString("ascii"), "PNG");
+});
+
+test("ships a focused Persian header with an English language switch", async () => {
+  const persianPage = await readFile(new URL("../dist/client/fa/index.html", import.meta.url), "utf8");
+  const stylesheet = await readFile(new URL("../dist/client/css/style.css", import.meta.url), "utf8");
+
+  assert.match(persianPage, /class="language-switch" href="\.\.\/index\.html"[^>]*>EN<\/a>/);
+  assert.doesNotMatch(persianPage, /class="menu-trigger"/);
+  assert.doesNotMatch(persianPage, /class="site-menu"/);
+  assert.match(stylesheet, /html\[lang="fa"\] \.landing-hero \.hero-h1/);
+  assert.match(stylesheet, /html\[lang="fa"\] \.form-footer\s*\{\s*border-top:\s*0/);
 });
