@@ -85,8 +85,10 @@ test("keeps the English About logo prominent above the intro", async () => {
   assert.match(stylesheet, /\.about-logo\{width:96px;height:96px/);
 });
 
-test("ships a focused Persian header with an English language switch", async () => {
+test("ships a focused Persian header and one shared footer system", async () => {
   const persianPage = await readFile(new URL("../dist/client/fa/index.html", import.meta.url), "utf8");
+  const bookingPage = await readFile(new URL("../dist/client/book.html", import.meta.url), "utf8");
+  const app = await readFile(new URL("../src/App.jsx", import.meta.url), "utf8");
   const stylesheet = await readFile(new URL("../dist/client/css/style.css", import.meta.url), "utf8");
 
   assert.match(persianPage, /class="language-switch" href="\.\.\/index\.html"[^>]*>EN<\/a>/);
@@ -98,7 +100,11 @@ test("ships a focused Persian header with an English language switch", async () 
   assert.match(stylesheet, /font-size:\s*clamp\(44px, 4vw, 72px\)/);
   assert.match(stylesheet, /font-size:\s*clamp\(20px, 5\.5vw, 24px\)/);
   assert.match(stylesheet, /html\[lang="fa"\] \.form-footer\s*\{\s*border-top:\s*0/);
-  assert.match(persianPage, /<footer class="site-footer site-footer--bar">\s*<span>© 2005—2026 Ali Babaei<\/span>\s*<span>Tehran · Remote worldwide<\/span>\s*<span>alibabaei\.info<\/span>\s*<\/footer>/);
-  assert.doesNotMatch(persianPage, /footer-brand|footer-meta|font-license-badge/);
-  assert.match(stylesheet, /\.site-footer--bar/);
+  assert.match(app, /function SiteFooter\(\)/);
+  assert.equal((app.match(/<SiteFooter \/>/g) || []).length, 3);
+  for (const page of [persianPage, bookingPage]) {
+    assert.match(page, /<footer class="site-footer">[\s\S]*Ali Babaei[\s\S]*alibabaeinote@gmail\.com[\s\S]*LinkedIn[\s\S]*© 2026 · All rights reserved[\s\S]*<\/footer>/);
+    assert.doesNotMatch(page, /site-footer--bar|footer-mark/);
+  }
+  assert.match(stylesheet, /\.site-footer\s*\{/);
 });
