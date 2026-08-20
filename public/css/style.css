@@ -1396,26 +1396,27 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 .site-footer {
   background: var(--ink);
   color: #fff;
-  padding: 40px 48px;
+  padding: 64px 48px;
   border-top: 1px solid var(--border-dark);
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: 28px;
+  direction: ltr;
 }
 
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .footer-name-row {
   display: flex;
   align-items: center;
   gap: 0.2em;
-  font-size: clamp(30px, 4.2vw, 56px);
+  font-size: clamp(42px, 4vw, 80px);
 }
 
 .footer-mark {
@@ -1436,14 +1437,14 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
 
 .footer-tag {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 16px;
   color: var(--dark-muted-2);
 }
 
 .footer-meta {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
   align-items: flex-start;
 }
 
@@ -1451,26 +1452,35 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
   color: var(--accent) !important;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 19px;
+  font-size: 16px;
 }
 
 .footer-social {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 28px;
 }
 
 .footer-social a {
   color: var(--dark-muted-1);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 16px;
 }
 .footer-social a:hover { color: var(--accent); }
 
 .copyright {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 16px;
   color: var(--dark-muted-2);
+}
+
+@media (max-width: 767px) {
+  .site-footer { flex-direction: column; align-items: flex-start; gap: 36px; padding: 48px 24px; }
+  .footer-brand { gap: 12px; }
+  .footer-name-row { font-size: 48px; }
+  .footer-tag, .footer-email, .footer-social a, .copyright { font-size: 14px; }
+  .footer-meta { gap: 16px; }
+  .footer-social { gap: 18px; }
 }
 
 /* Persian landing page: use the exact compact English footer bar. */
@@ -1708,11 +1718,6 @@ html[lang="fa"] .landing-hero .hero-h1 {
 
 html[lang="fa"] .form-footer {
   border-top: 0;
-}
-
-html[lang="fa"] .site-footer--bar {
-  letter-spacing: 0.22em !important;
-  text-transform: uppercase !important;
 }
 
 @media (max-width: 900px) {
