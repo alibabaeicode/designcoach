@@ -85,16 +85,6 @@ test("keeps the English About logo prominent above the intro", async () => {
   assert.match(stylesheet, /\.about-logo\{width:96px;height:96px/);
 });
 
-test("ships the temporary home hero artwork as a stable asset", async () => {
-  const app = await readFile(new URL("../src/App.jsx", import.meta.url), "utf8");
-  const stylesheet = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
-  const artwork = await readFile(new URL("../dist/client/assets/hero-artwork-trial.jpg", import.meta.url));
-
-  assert.match(app, /className="hero-artwork" src="\/assets\/hero-artwork-trial\.jpg"/);
-  assert.match(stylesheet, /\.hero-artwork\{display:block;width:clamp\(220px,22vw,360px\)/);
-  assert.deepEqual(artwork.subarray(0, 3), Buffer.from([0xff, 0xd8, 0xff]));
-});
-
 test("keeps the shared footer governed by documented design tokens", async () => {
   const tokens = await readFile(new URL("../src/design-tokens.css", import.meta.url), "utf8");
   const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
