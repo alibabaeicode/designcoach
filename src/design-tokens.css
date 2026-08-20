@@ -58,6 +58,12 @@
   --ds-type-label-leading: 1.33;
   --ds-type-eyebrow-size: 10px;
   --ds-type-eyebrow-leading: 1.6;
+  --ds-type-footer-name-size: clamp(42px, 4vw, 80px);
+  --ds-type-footer-name-size-mobile: 48px;
+  --ds-type-footer-name-leading: 0.95;
+  --ds-type-footer-meta-size: 16px;
+  --ds-type-footer-meta-size-mobile: 14px;
+  --ds-type-footer-meta-leading: 1.4;
 
   /* Spacing scale: 4px base unit */
   --ds-space-0: 0;
@@ -85,6 +91,11 @@
   --ds-gutter-section: 40px;
   --ds-gutter-mobile: 24px;
   --ds-grid-rule: 1px;
+  --ds-footer-padding-block: 64px;
+  --ds-footer-padding-inline: 48px;
+  --ds-footer-padding-block-mobile: 48px;
+  --ds-footer-gap: 28px;
+  --ds-footer-gap-mobile: 36px;
 
   /* Shape and elevation */
   --ds-radius-none: 0;

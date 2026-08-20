@@ -2,7 +2,7 @@
 
 Status: active contract
 
-Scope: `index.html`, `services.html`, `about.html` and future pages in this site
+Scope: `index.html`, `services.html`, `about.html`, `book.html`, `fa/` and future pages in this site
 
 Source of truth: `src/design-tokens.css` for primitives and semantic tokens; `src/styles.css` for implementation rules.
 
@@ -100,7 +100,20 @@ Layout rules:
 - Every responsive layout must be checked at `390px` and at a wide desktop viewport.
 - A section may break the container only when its visual role is explicitly full-bleed: marquee, contact, dark overlay, or footer.
 
-### 2.5 Shape, borders, and effects
+### 2.5 Shared footer
+
+Every route ends with the same identity-and-channels footer. It is a full-bleed dark region, not a compact metadata bar.
+
+| Part | Content contract | Visual contract |
+| --- | --- | --- |
+| Brand block | `Ali Babaei` plus `Design coaching · UX consulting · Tehran & remote` | Left-aligned display name; supporting line below it |
+| Channels block | Email, LinkedIn, Dribbble, Behance, Medium, copyright | Right-aligned on desktop; follows the brand block on mobile |
+| Desktop | Two columns | `64px 48px` padding, `28px` minimum inter-block gap |
+| Mobile | One column | `48px 24px` padding, `36px` block gap |
+
+The React routes use `SiteFooter`; the static English booking page and Persian entry point use the same DOM order and values. The text stays in English on both routes so the footer is literally consistent across language entry points. React values are governed by `--ds-footer-*` and `--ds-type-footer-*`; `public/css/style.css` mirrors them through `--footer-*` adapter variables because static pages do not bundle the React token file. Do not add a page-specific footer variant without first changing this contract.
+
+### 2.6 Shape, borders, and effects
 
 - Radius is `0` for cards, inputs, sections, and article surfaces.
 - Pill radius (`999px`) is reserved for selectable focus-area chips and similar compact controls.
@@ -110,11 +123,11 @@ Layout rules:
 - Blur is reserved for the scroll-aware header and scroll transition; do not add blur to cards or body copy.
 - The blue radial glow is reserved for the contact section and must remain behind content and pointer-inert.
 
-### 2.6 Brand mark
+### 2.7 Brand mark
 
-- The canonical portrait mark is `public/assets/ali-babaei-logo.png`.
+- The canonical portrait mark is `public/assets/ali-babaei-logo-v2.png`.
 - The main header renders it as a circular `30px` mark on desktop and `26px` on mobile, followed by the wordmark and role label.
-- Legacy `book.html` and `fa/` headers and footers use the same asset so the brand remains consistent across entry points.
+- The legacy `book.html` and `fa/` headers use the same asset so the brand remains consistent across entry points.
 - The same asset is the PNG favicon and Apple touch icon. Do not substitute the old logo mark or crop the image into a different shape without updating this contract.
 
 ## 3. Motion and interaction contract
@@ -146,6 +159,7 @@ The UI is implemented in the `App` module, but each named surface below is a vis
 | `Teaching` | Track-record row items | Editorial grid, hover accent |
 | `Process` | Ordered step items | Number state, three-column grid |
 | `Contact` | Contact promise, fields, focus areas, submit state | Dark surface, form tokens, direct-access CTA |
+| `SiteFooter` | Identity, contact channel, social channels, copyright | Shared footer tokens and dark-surface hierarchy |
 | `ServicesPage` | Four service-track records | Service taxonomy and decision CTA |
 | `AboutPage` | Proof records, articles, social channels | Credibility taxonomy and editorial rows |
 
@@ -166,7 +180,7 @@ When a module needs a new visual state, add the state to its data/interface firs
 2. Reuse an existing semantic token before creating a new one.
 3. If a new decision is genuinely needed, add a `--ds-*` token with a role-based name and document its allowed use here.
 4. Implement at the module seam, not by adding a page-specific override to an unrelated module.
-5. Check desktop, mobile, keyboard focus, reduced motion, hover, and direct-route loading.
+5. Check desktop, mobile, keyboard focus, reduced motion, hover, direct-route loading, and shared footer parity.
 6. Run `npm run build` and `npm run test:sites`.
 7. Update `design-qa.md` when geometry, interaction, or source fidelity changes.
 

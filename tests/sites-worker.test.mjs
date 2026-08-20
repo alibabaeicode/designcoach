@@ -85,6 +85,23 @@ test("keeps the English About logo prominent above the intro", async () => {
   assert.match(stylesheet, /\.about-logo\{width:96px;height:96px/);
 });
 
+test("keeps the shared footer governed by documented design tokens", async () => {
+  const tokens = await readFile(new URL("../src/design-tokens.css", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+  const staticStyles = await readFile(new URL("../public/css/style.css", import.meta.url), "utf8");
+  const designSystem = await readFile(new URL("../docs/design-system.md", import.meta.url), "utf8");
+  const contentModel = await readFile(new URL("../docs/site-content-model.md", import.meta.url), "utf8");
+
+  assert.match(tokens, /--ds-footer-padding-block: 64px/);
+  assert.match(tokens, /--ds-type-footer-name-size: clamp\(42px, 4vw, 80px\)/);
+  assert.match(styles, /\.unified-footer\{[^}]*var\(--ds-footer-padding-block\)/);
+  assert.match(staticStyles, /--footer-padding-block: 64px/);
+  assert.match(staticStyles, /\.site-footer\s*\{[^}]*var\(--footer-padding-block\)/);
+  assert.match(designSystem, /### 2\.5 Shared footer/);
+  assert.match(designSystem, /ali-babaei-logo-v2\.png/);
+  assert.match(contentModel, /## 7\. Shared footer content contract/);
+});
+
 test("ships a focused Persian header and one shared footer system", async () => {
   const persianPage = await readFile(new URL("../dist/client/fa/index.html", import.meta.url), "utf8");
   const bookingPage = await readFile(new URL("../dist/client/book.html", import.meta.url), "utf8");
