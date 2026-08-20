@@ -157,7 +157,7 @@
 
 /* Internal About page captured from alibabaei.info/about.html. */
 .about-page{padding-top:64px;background:var(--background);color:var(--foreground)}
-.about-intro{max-width:1200px;margin:0 auto;border-bottom:1px solid var(--border)}
+.about-intro{max-width:1200px;margin:0 auto}
 .about-copy{display:flex;flex-direction:column;align-items:center;gap:24px;padding:88px 40px 96px;text-align:center}
 .about-logo{width:88px;height:88px;display:block;border-radius:50%;object-fit:cover;margin-bottom:8px}
 .about-copy h1{margin:0;font-family:var(--heading);font-size:clamp(40px,5.5vw,84px);line-height:.95;font-weight:600;letter-spacing:-.06em;text-transform:uppercase}
