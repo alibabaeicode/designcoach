@@ -85,6 +85,10 @@ test("ships a focused Persian header with an English language switch", async () 
   assert.match(persianPage, /class="language-switch" href="\.\.\/index\.html"[^>]*>EN<\/a>/);
   assert.doesNotMatch(persianPage, /class="menu-trigger"/);
   assert.doesNotMatch(persianPage, /class="site-menu"/);
+  assert.match(persianPage, /<h1 class="hero-h1">تصمیم‌های طراحی که<br>\s*تیم‌تون می‌تونه <span class="mark-yellow">واقعاً بسازه<\/span><\/h1>/);
+  assert.doesNotMatch(persianPage, /data-cycle-words/);
   assert.match(stylesheet, /html\[lang="fa"\] \.landing-hero \.hero-h1/);
+  assert.match(stylesheet, /font-size:\s*clamp\(44px, 4vw, 72px\)/);
+  assert.match(stylesheet, /font-size:\s*clamp\(20px, 5\.5vw, 24px\)/);
   assert.match(stylesheet, /html\[lang="fa"\] \.form-footer\s*\{\s*border-top:\s*0/);
 });
