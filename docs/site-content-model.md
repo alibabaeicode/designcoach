@@ -109,8 +109,9 @@ ContactChannel = {
 Booking
 ├── Intent: free 45-minute planning call
 ├── Contact details: name, work email, organisation
-├── Context: focus area + concrete challenge
-├── Submit state: requested / received
+├── Context: optional focus area + required concrete challenge
+├── Validation: name, work email, organisation and concrete challenge; one inline message per invalid field
+├── Submit state: requested / received (receipt replaces the form for the current visit)
 └── Footer: shared identity + channels
 ```
 

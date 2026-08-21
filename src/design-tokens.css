@@ -16,6 +16,7 @@
   --ds-color-ink-panel: #1a1a1b;
   --ds-color-accent: #2e5bff;
   --ds-color-accent-hover: #244be0;
+  --ds-color-feedback-error: #ff6b6b;
   --ds-color-border: #cfd1d5;
   --ds-color-border-light: #e2e4e9;
   --ds-color-border-soft: #cdced2;
@@ -33,6 +34,7 @@
   --ds-color-border-default: var(--ds-color-border);
   --ds-color-border-subtle: rgba(10, 10, 11, 0.18);
   --ds-color-border-on-dark: rgba(248, 249, 250, 0.2);
+  --ds-color-text-error: var(--ds-color-feedback-error);
 
   /* Typography */
   --ds-font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;

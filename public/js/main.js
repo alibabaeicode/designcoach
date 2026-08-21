@@ -165,7 +165,7 @@ function buildValidators(form, topicsHidden) {
   });
 
   const topicsGroup = form.querySelector("[data-topics-group]");
-  if (topicsGroup) {
+  if (topicsGroup && topicsGroup.dataset.requiredMessage) {
     const wrapper = topicsGroup.closest(".field");
     validators.push({
       focusEl: topicsGroup.querySelector(".topic-chip"),
@@ -190,7 +190,6 @@ function initBookingForms() {
     const form = wrapper.querySelector("form");
     const success = wrapper.querySelector(".booking-success");
     const errorBox = wrapper.querySelector(".form-error");
-    const resetBtn = wrapper.querySelector(".btn-reset");
     const topicsHidden = form.querySelector('input[name="topics"]');
     const chips = wrapper.querySelectorAll(".topic-chip");
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -263,18 +262,6 @@ function initBookingForms() {
           submitBtn.disabled = false;
         });
     });
-
-    if (resetBtn) {
-      resetBtn.addEventListener("click", () => {
-        form.reset();
-        selected.clear();
-        chips.forEach((c) => c.classList.remove("is-selected"));
-        if (topicsHidden) topicsHidden.value = "";
-        validators.forEach(clearValidatorError);
-        form.hidden = false;
-        success.classList.remove("is-visible");
-      });
-    }
   });
 }
 

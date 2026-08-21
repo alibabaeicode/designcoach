@@ -1384,24 +1384,6 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
   color: var(--dark-muted-1);
 }
 
-.btn-reset {
-  align-self: flex-start;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-full);
-  padding: 16px 32px;
-  min-height: 48px;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.btn-reset:hover { background: var(--accent-hover); }
-.btn-reset:active { background: var(--accent-active); }
-
 /* ---------- Footer ---------- */
 
 .site-footer {
