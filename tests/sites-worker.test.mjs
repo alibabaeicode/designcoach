@@ -85,6 +85,13 @@ test("keeps the English About logo prominent above the intro", async () => {
   assert.match(stylesheet, /\.about-logo\{width:96px;height:96px/);
 });
 
+test("keeps all statistics visually identical by default", async () => {
+  const stylesheet = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.match(stylesheet, /\.stat:last-child\{border-right:0\}/);
+  assert.doesNotMatch(stylesheet, /\.stat:last-child\{[^}]*background/);
+});
+
 test("uses Formspree with inline field validation and a locked success state", async () => {
   const app = await readFile(new URL("../src/App.jsx", import.meta.url), "utf8");
   const stylesheet = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
