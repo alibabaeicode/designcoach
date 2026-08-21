@@ -8,22 +8,6 @@
    See DESIGN-SYSTEM.md for the full sourcing/rationale.
    ========================================================================== */
 
-@font-face {
-  font-family: "Selawik";
-  src: url("../assets/fonts/selawkl.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Selawik";
-  src: url("../assets/fonts/selawk.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
 :root {
   --cream: #F8F9FA;
   --bg-soft: #F1F2F4;
@@ -71,12 +55,8 @@
   --ease-inertia: cubic-bezier(0.76, 0, 0.24, 1);
 
   --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Segoe UI Light", "Segoe UI", "Selawik", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", sans-serif;
   --font-mono: "Space Grotesk", sans-serif;
-  --type-body-lead: 19px;
-  --type-body-supporting: 17px;
-  --type-body-compact: 15px;
-  --type-control: 18px;
 
   --container-max: 1200px;
 
@@ -101,7 +81,7 @@ body {
   background-color: var(--cream);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: var(--type-body-lead);
+  font-size: 18px;
   line-height: 1.556; /* 28px on 18px body, per reference */
   letter-spacing: -0.02em;
   -webkit-font-smoothing: antialiased;
@@ -1741,54 +1721,6 @@ html[lang="fa"] .form-footer {
 
 html[lang="fa"] .site-menu-links a {
   line-height: 1.35;
-}
-
-/* Reading hierarchy. Persian remains KalamehWeb; display and metadata remain
-   Space Grotesk. The body stack uses bundled Selawik when Segoe is absent. */
-html:not([lang="fa"]) p,
-html:not([lang="fa"]) input,
-html:not([lang="fa"]) textarea {
-  font-family: var(--font-body);
-  font-weight: 300;
-}
-
-html:not([lang="fa"]) .intro-copy,
-html:not([lang="fa"]) .book-intro > p,
-html:not([lang="fa"]) .booking-success p {
-  font-size: var(--type-body-lead);
-  line-height: 1.556;
-}
-
-html:not([lang="fa"]) .stat-label,
-html:not([lang="fa"]) .section-lede,
-html:not([lang="fa"]) .offer-list li,
-html:not([lang="fa"]) .book-points li {
-  font-size: var(--type-body-supporting);
-  line-height: 1.5;
-}
-
-html:not([lang="fa"]) .offer-note,
-html:not([lang="fa"]) .offer-card--yellow p {
-  font-size: var(--type-body-compact);
-  line-height: 1.47;
-}
-
-html:not([lang="fa"]) .field-input,
-html:not([lang="fa"]) .field-textarea {
-  font-size: var(--type-control);
-}
-
-@media (max-width: 900px) {
-  :root {
-    --type-body-lead: 17px;
-    --type-body-supporting: 16px;
-    --type-body-compact: 15px;
-    --type-control: 16px;
-  }
-
-  html:not([lang="fa"]) body {
-    font-size: var(--type-body-lead);
-  }
 }
 
 /* System dark mode for the static English and Persian entry points. The
