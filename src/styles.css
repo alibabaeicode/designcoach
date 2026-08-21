@@ -162,7 +162,7 @@
 .about-page{padding-top:64px;background:var(--background);color:var(--foreground)}
 .about-intro{max-width:1200px;margin:0 auto}
 .about-copy{display:flex;flex-direction:column;align-items:center;gap:24px;padding:88px 40px 96px;text-align:center}
-.about-logo{width:160px;height:160px;display:block;border-radius:50%;object-fit:cover;margin-bottom:8px}
+.about-logo{width:180px;height:180px;display:block;border-radius:50%;object-fit:cover;margin-bottom:8px}
 .about-copy h1{margin:0;font-family:var(--heading);font-size:clamp(40px,5.5vw,84px);line-height:.95;font-weight:600;letter-spacing:-.06em;text-transform:uppercase}
 .about-copy p{max-width:760px;margin:0;font-size:18px;line-height:1.556;color:var(--foreground);text-wrap:pretty}
 .about-tools{display:flex;flex-direction:column;gap:8px;width:min(760px,100%);padding-top:20px;border-top:1px solid var(--border)}
