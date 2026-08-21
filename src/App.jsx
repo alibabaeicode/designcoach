@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 const logoUrl = "/assets/ali-babaei-logo-v2.png?rev=20260821";
+const formspreeEndpoint = "https://formspree.io/f/myeggnpv";
 
 const companies = ["Telewebion", "Behsazan Mellat", "Skyroom", "BimeBazar", "BeAndam", "Persis Pooya Data", "Quera", "Seram Pakhsh", "Pezeshk Khoob", "Noban", "Sanjagh", "Ankuy"];
 const focusAreas = ["Conversion", "Retention", "Usability audit", "Team coaching", "Design thinking workshop", "Hiring & team growth"];
@@ -45,6 +46,20 @@ const writingArticles = [
   ["2026", "The Context Trap: Why Design Frameworks Fail in the Real World", "Design frameworks like Design Thinking promise a fixed path, but most organisations don't match the ideal case they assume. This piece maps the real environments design operates in and argues the outcome matters more than the process used to reach it.", "https://medium.com/design-bootcamp/the-context-trap-why-design-frameworks-fail-in-the-real-world-ce8dd202be11"],
   ["2023", "User Experience Hackers", "Usability is only the starting point of user experience — not its goal. This piece distinguishes designers who refine known patterns from those who hack experience itself, building unexpected moments that earn genuine customer loyalty.", "https://medium.com/design-bootcamp/user-experience-hackers-13b8bf1af1e3"],
 ];
+
+function validateContactField(field, value) {
+  const trimmedValue = value.trim();
+  if (!trimmedValue) {
+    return {
+      name: "Please enter your full name.",
+      email: "Please enter your work email.",
+      organisation: "Please enter your organisation.",
+      challenge: "Please tell me what this session should cover.",
+    }[field];
+  }
+  if (field === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedValue)) return "Please enter a valid work email.";
+  return "";
+}
 
 function usePageMotion() {
   const [scrolled, setScrolled] = useState(false);
@@ -194,8 +209,40 @@ function Process() {
 
 function Contact() {
   const [selectedArea, setSelectedArea] = useState("");
+  const [values, setValues] = useState({ name: "", email: "", organisation: "", challenge: "" });
+  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
-  return <section className="contact" id="contact"><div className="contact-glow" /><div className="contact-inner"><div className="contact-header" data-reveal><span className="eyebrow">04 / Direct access</span><h2>Start with a free 45-minute planning call</h2><p>Tell me the one specific thing you want covered — a funnel, a review, a team habit — and where a preferred window sits in your week. I reply within two working days to confirm a time and what to expect.</p></div><div className="contact-grid"><div className="contact-copy" data-reveal><div className="contact-points"><div><span>01</span>First session is free — a scoped, no-obligation planning call.</div><div><span>02</span>No slide deck — notes you can circulate the same day.</div><div><span>03</span>Remote, or in person in Tehran.</div></div><a className="email-link" href="mailto:alibabaeinote@gmail.com"><MailIcon /> alibabaeinote@gmail.com<ArrowUpRightIcon /></a></div><form className="contact-form" data-reveal onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}><label>Full name<input type="text" /></label><label>Work email<input type="email" /></label><label>Organisation<input type="text" /></label><fieldset><legend>What do you need help with?</legend><div className="area-options">{focusAreas.map((area) => <button className={selectedArea === area ? "selected" : ""} type="button" key={area} onClick={() => setSelectedArea(area)}>{area}</button>)}</div></fieldset><label>What specifically should this session cover?<textarea rows="3" /></label><button className="button-primary form-submit" type="submit">Send request →</button><span className="reply-note">{submitted ? "Request received — I’ll reply within 2 working days" : "Reply within 2 working days"}</span></form></div><SiteFooter /></div></section>;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const updateField = (field, value) => {
+    setValues((current) => ({ ...current, [field]: value }));
+    setErrors((current) => current[field] ? { ...current, [field]: validateContactField(field, value) } : current);
+  };
+  const validateField = (field) => setErrors((current) => ({ ...current, [field]: validateContactField(field, values[field]) }));
+  const submitContact = async (event) => {
+    event.preventDefault();
+    if (isSubmitting || submitted) return;
+    const nextErrors = Object.fromEntries(Object.entries(values).map(([field, value]) => [field, validateContactField(field, value)]));
+    setErrors(nextErrors);
+    const firstInvalid = Object.keys(nextErrors).find((field) => nextErrors[field]);
+    if (firstInvalid) {
+      document.getElementById(`contact-${firstInvalid}`)?.focus();
+      return;
+    }
+    setIsSubmitting(true);
+    setSubmitError("");
+    const form = event.currentTarget;
+    try {
+      const response = await fetch(formspreeEndpoint, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) });
+      if (!response.ok) throw new Error("Formspree request failed");
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Something went wrong sending this — please email alibabaeinote@gmail.com directly instead.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+  return <section className="contact" id="contact"><div className="contact-glow" /><div className="contact-inner"><div className="contact-header" data-reveal><span className="eyebrow">04 / Direct access</span><h2>Start with a free 45-minute planning call</h2><p>Tell me the one specific thing you want covered — a funnel, a review, a team habit — and where a preferred window sits in your week. I reply within two working days to confirm a time and what to expect.</p></div><div className="contact-grid"><div className="contact-copy" data-reveal><div className="contact-points"><div><span>01</span>First session is free — a scoped, no-obligation planning call.</div><div><span>02</span>No slide deck — notes you can circulate the same day.</div><div><span>03</span>Remote, or in person in Tehran.</div></div><a className="email-link" href="mailto:alibabaeinote@gmail.com"><MailIcon /> alibabaeinote@gmail.com<ArrowUpRightIcon /></a></div><div className="contact-form-slot" data-reveal>{submitted ? <div className="contact-form-success" role="status" aria-live="polite"><span className="eyebrow">Request received</span><h3>Thank you — I’ll be in touch</h3><p>Your details are safely with me. I’ll reply at the address you provided within two working days.</p></div> : <form className="contact-form" action={formspreeEndpoint} method="POST" noValidate onSubmit={submitContact}><input type="hidden" name="_subject" value="New design consultation request" /><div className="contact-field"><label htmlFor="contact-name">Full name</label><input id="contact-name" name="name" type="text" value={values.name} onChange={(event) => updateField("name", event.target.value)} onBlur={() => validateField("name")} aria-invalid={Boolean(errors.name)} aria-describedby="contact-name-error" disabled={isSubmitting} /><span className="contact-field-error" id="contact-name-error" aria-live="polite">{errors.name}</span></div><div className="contact-field"><label htmlFor="contact-email">Work email</label><input id="contact-email" name="email" type="email" value={values.email} onChange={(event) => updateField("email", event.target.value)} onBlur={() => validateField("email")} aria-invalid={Boolean(errors.email)} aria-describedby="contact-email-error" disabled={isSubmitting} /><span className="contact-field-error" id="contact-email-error" aria-live="polite">{errors.email}</span></div><div className="contact-field"><label htmlFor="contact-organisation">Organisation</label><input id="contact-organisation" name="organisation" type="text" value={values.organisation} onChange={(event) => updateField("organisation", event.target.value)} onBlur={() => validateField("organisation")} aria-invalid={Boolean(errors.organisation)} aria-describedby="contact-organisation-error" disabled={isSubmitting} /><span className="contact-field-error" id="contact-organisation-error" aria-live="polite">{errors.organisation}</span></div><fieldset disabled={isSubmitting}><legend>What do you need help with?</legend><div className="area-options">{focusAreas.map((area) => <button className={selectedArea === area ? "selected" : ""} type="button" key={area} onClick={() => setSelectedArea(area)}>{area}</button>)}</div><input type="hidden" name="topics" value={selectedArea} /></fieldset><div className="contact-field"><label htmlFor="contact-challenge">What specifically should this session cover?</label><textarea id="contact-challenge" name="challenge" rows="3" value={values.challenge} onChange={(event) => updateField("challenge", event.target.value)} onBlur={() => validateField("challenge")} aria-invalid={Boolean(errors.challenge)} aria-describedby="contact-challenge-error" disabled={isSubmitting} /><span className="contact-field-error" id="contact-challenge-error" aria-live="polite">{errors.challenge}</span></div>{submitError && <p className="contact-form-error" role="alert">{submitError}</p>}<button className="button-primary form-submit" type="submit" disabled={isSubmitting}>{isSubmitting ? "Sending request…" : "Send request →"}</button><span className="reply-note">Reply within 2 working days</span></form>}</div></div><SiteFooter /></div></section>;
 }
 
 function ServicesPage() {

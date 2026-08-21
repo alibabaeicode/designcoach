@@ -121,7 +121,8 @@
             </div>
             <div class="field">
               <label for="bk-org-2">Organisation</label>
-              <input id="bk-org-2" name="org" type="text" placeholder="Company or team">
+              <input id="bk-org-2" name="org" type="text" required placeholder="Company or team" data-required-message="Please enter your organisation.">
+              <span class="field-error"></span>
             </div>
           </div>
           <div class="field">
@@ -135,7 +136,6 @@
               <button type="button" class="topic-chip" data-topic="Hiring & team growth">Hiring &amp; team growth</button>
             </div>
             <input type="hidden" name="topics" value="">
-            <span class="field-error"></span>
           </div>
           <div class="field">
             <label for="bk-note-2">What specifically should this session cover?</label>
@@ -152,7 +152,6 @@
           <span class="eyebrow">Request received</span>
           <h3>Thank you — I will be in touch</h3>
           <p>Expect a reply at the address you gave within two working days.</p>
-          <button type="button" class="btn-reset">Send another request</button>
         </div>
       </div>
     </section>

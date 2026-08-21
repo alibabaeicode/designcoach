@@ -85,6 +85,29 @@ test("keeps the English About logo prominent above the intro", async () => {
   assert.match(stylesheet, /\.about-logo\{width:96px;height:96px/);
 });
 
+test("uses Formspree with inline field validation and a locked success state", async () => {
+  const app = await readFile(new URL("../src/App.jsx", import.meta.url), "utf8");
+  const stylesheet = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+  const bookingPage = await readFile(new URL("../public/book.html", import.meta.url), "utf8");
+  const persianBookingPage = await readFile(new URL("../public/fa/index.html", import.meta.url), "utf8");
+  const bookingScript = await readFile(new URL("../public/js/main.js", import.meta.url), "utf8");
+
+  assert.match(app, /const formspreeEndpoint = "https:\/\/formspree\.io\/f\/myeggnpv"/);
+  assert.match(app, /fetch\(formspreeEndpoint, \{ method: "POST"/);
+  assert.match(app, /className="contact-field-error"/);
+  assert.match(app, /className="contact-form-success"/);
+  assert.match(app, /disabled=\{isSubmitting\}/);
+  assert.match(stylesheet, /\.contact-field-error\{/);
+  assert.match(stylesheet, /\.contact-form-success\{/);
+  for (const page of [bookingPage, persianBookingPage]) {
+    assert.doesNotMatch(page, /btn-reset/);
+    assert.doesNotMatch(page, /data-required-message="لطفاً حداقل یه مورد رو انتخاب کنید\."/);
+    assert.match(page, /name="org" type="text" required/);
+  }
+  assert.match(bookingScript, /if \(topicsGroup && topicsGroup\.dataset\.requiredMessage\)/);
+  assert.doesNotMatch(bookingScript, /const resetBtn = wrapper\.querySelector\("\.btn-reset"\)/);
+});
+
 test("keeps the shared footer governed by documented design tokens", async () => {
   const tokens = await readFile(new URL("../src/design-tokens.css", import.meta.url), "utf8");
   const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");

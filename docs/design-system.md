@@ -26,6 +26,7 @@ The visual position is intentionally restrained: editorial, monochrome, spacious
 | `--ds-color-ink-panel` | `#1a1a1b` | Secondary dark panel | Dark engagement card; do not use for all dark sections |
 | `--ds-color-accent` | `#2e5bff` | Action blue | Links, active numbers, selected pills, CTA, focus ring |
 | `--ds-color-accent-hover` | `#244be0` | Action hover | Hover only; never use as a default text color |
+| `--ds-color-feedback-error` | `#ff6b6b` | Validation feedback | Invalid field borders and form-level error feedback only |
 | `--ds-color-border` | `#cfd1d5` | Default rule | Grid rules, section borders, card borders |
 | `--ds-color-border-light` | `#e2e4e9` | Light rule | Header and low-contrast separators |
 | `--ds-color-text-secondary` | `rgba(10,10,11,.7)` | Supporting copy | Intro paragraphs, explanatory copy |
@@ -33,6 +34,7 @@ The visual position is intentionally restrained: editorial, monochrome, spacious
 | `--ds-color-text-subtle` | `rgba(10,10,11,.4)` | Quiet metadata | Eyebrows, footer labels, inactive numbers |
 | `--ds-color-text-on-dark-secondary` | `rgba(248,249,250,.7)` | Dark supporting copy | Contact and dark-card descriptions |
 | `--ds-color-border-on-dark` | `rgba(248,249,250,.2)` | Dark rule | Contact form and dark footer separators |
+| `--ds-color-text-error` | `var(--ds-color-feedback-error)` | Error message text | Inline validation copy beneath an invalid required input |
 
 Rules:
 
@@ -158,7 +160,7 @@ The UI is implemented in the `App` module, but each named surface below is a vis
 | `Engagements` | Two service-outcome cards | Light/dark surfaces, outcome hierarchy |
 | `Teaching` | Track-record row items | Editorial grid, hover accent |
 | `Process` | Ordered step items | Number state, three-column grid |
-| `Contact` | Contact promise, fields, focus areas, submit state | Dark surface, form tokens, direct-access CTA |
+| `Contact` | Contact promise, required fields, optional focus areas, validation and submit state | Dark surface, inline feedback and locked success state, direct-access CTA |
 | `SiteFooter` | Identity, contact channel, social channels, copyright | Shared footer tokens and dark-surface hierarchy |
 | `ServicesPage` | Four service-track records | Service taxonomy and decision CTA |
 | `AboutPage` | Proof records, articles, social channels | Credibility taxonomy and editorial rows |
@@ -172,6 +174,8 @@ When a module needs a new visual state, add the state to its data/interface firs
 - Focus outlines use the accent token and must remain visible against both surfaces.
 - Decorative cursor, grain, glow, and scroll cue are `aria-hidden` or pointer-inert.
 - Form labels remain visible; placeholder text is not a label.
+- Required contact fields show one concise inline error directly below their own input. Focus area is optional and never receives an error state.
+- A successfully submitted request replaces the form with a confirmation state for the current visit; do not offer a reset or second request in that state.
 - Long copy must be tested for wrapping at `390px`; never fix overflow with clipping.
 
 ## 6. Change contract
