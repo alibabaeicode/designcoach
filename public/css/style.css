@@ -188,6 +188,13 @@ img { max-width: 100%; display: block; }
   color: var(--ink);
 }
 
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-inline-start: auto;
+}
+
 .menu-trigger-bars {
   display: flex;
   flex-direction: column;
@@ -1563,6 +1570,11 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
   .section-head { align-items: flex-end; }
 
   body { font-size: 16px; }
+}
+
+@media (max-width: 520px) {
+  .header-actions { gap: 10px; }
+  .brand-tag { display: none; }
 }
 
 @media (max-width: 560px) {

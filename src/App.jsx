@@ -173,7 +173,7 @@ function SiteFooter() {
 function Header({ onOpen, onClose, scrolled, homeHref, services }) {
   return <header className={`site-header ${services ? "services-site-header" : ""} ${scrolled ? "is-scrolled" : ""}`}>
     <a className="brand" href={homeHref} onClick={onClose}><img className="brand-logo" src={logoUrl} alt="Ali Babaei" /><span className="brand-name">Ali Babaei</span><span className="brand-dot">•</span><span className="brand-role">Design Coach / Consultant</span></a>
-    <button className="menu-button" type="button" onClick={onOpen}><span className="menu-lines"><span /><span /></span>Menu</button>
+    <div className="header-actions"><button className="menu-button" type="button" onClick={onOpen}><span className="menu-lines"><span /><span /></span>Menu</button><a className="header-language-switch" href="fa/" lang="fa" hreflang="fa" aria-label="Switch to Persian">FA</a></div>
     <div className={`scroll-progress ${scrolled ? "is-visible" : ""}`} aria-hidden="true" />
   </header>;
 }

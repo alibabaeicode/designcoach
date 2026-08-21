@@ -244,5 +244,9 @@
 .stats-grid .stat{justify-content:flex-start;padding-top:104px}
 @media(max-width:767px){.stats-grid .stat{padding-top:80px}}
 
+/* English headers expose the Persian entry point beside Menu. */
+.header-actions{display:inline-flex;align-items:center;gap:16px;margin-left:auto}.header-language-switch{display:inline-flex;align-items:center;min-height:32px;color:var(--foreground);font-family:var(--mono);font-size:12px;line-height:16px;letter-spacing:.25em;text-transform:uppercase}.header-language-switch:hover{color:var(--accent)}
+@media(max-width:520px){.header-actions{gap:10px}.brand-role{display:none}.header-language-switch{font-size:10px}}
+
 /* This must follow route and theme styles so all legacy effects use the active accent token. */
 @media (prefers-color-scheme: dark){.hero-scroll-layer{background:radial-gradient(circle at 0% 25%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 30%),radial-gradient(circle at 100% 100%,rgba(27,28,32,.85),transparent 35%)}}

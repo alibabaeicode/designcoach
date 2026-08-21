@@ -180,3 +180,15 @@ test("ships a focused Persian header and one shared footer system", async () => 
   }
   assert.match(stylesheet, /\.site-footer\s*\{/);
 });
+
+test("puts the Persian entry beside Menu on every English header", async () => {
+  const app = await readFile(new URL("../src/App.jsx", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+  const bookingPage = await readFile(new URL("../public/book.html", import.meta.url), "utf8");
+  const bookingStyles = await readFile(new URL("../public/css/style.css", import.meta.url), "utf8");
+
+  assert.match(app, /className="header-actions"[\s\S]*className="menu-button"[\s\S]*className="header-language-switch" href="fa\/"/);
+  assert.match(styles, /\.header-language-switch\{/);
+  assert.match(bookingPage, /class="header-actions"[\s\S]*class="menu-trigger"[\s\S]*class="language-switch" href="fa\/"/);
+  assert.match(bookingStyles, /\.header-actions\s*\{/);
+});

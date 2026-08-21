@@ -175,7 +175,7 @@ The UI is implemented in the `App` module, but each named surface below is a vis
 
 | Module | Interface | Uses |
 | --- | --- | --- |
-| `Header` | `homeHref`, `scrolled`, `onOpen`, `onClose` | Header tokens, navigation, scroll state |
+| `Header` | `homeHref`, `scrolled`, `onOpen`, `onClose` | Header tokens, navigation, scroll state; English routes show `Menu` followed by the `FA` language entry, while Persian keeps the single `EN` entry and no menu trigger |
 | `MenuOverlay` | `onClose`, `closing`, `onExited` | Navigation item model, menu motion tokens |
 | `Hero` | Page intro content and primary/secondary actions | Display type, canvas, action blue |
 | `Stats` | Value/label pairs | Number type, rule grid, uniform default surfaces; value is top-anchored independently of label wrapping; accent line on hover only |
