@@ -158,6 +158,15 @@
 .services-cta-link{border:0;background:var(--accent);color:#fff}.services-cta-link:hover{border-color:transparent;background:#244be0;color:#fff}
 @media(max-width:767px){.services-cta-link{margin-top:24px}}
 
+/* Accent contract: all blue-derived states inherit from the design token. */
+.button-primary:hover,.services-cta-link:hover{background:var(--ds-color-accent-hover)}
+.accent-text{color:var(--accent)}
+.contact-glow{background:radial-gradient(circle,color-mix(in srgb,var(--accent) 16%,transparent),transparent 68%)}
+.contact-form-success{border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.contact-form-success .eyebrow{color:color-mix(in srgb,var(--accent) 52%,white)}
+.hero-scroll-layer{background:radial-gradient(circle at 0% 25%,color-mix(in srgb,var(--accent) 11%,transparent),transparent 30%),radial-gradient(circle at 100% 100%,rgba(225,227,231,.55),transparent 35%)}
+@media (prefers-color-scheme: dark){.hero-scroll-layer{background:radial-gradient(circle at 0% 25%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 30%),radial-gradient(circle at 100% 100%,rgba(27,28,32,.85),transparent 35%)}}
+
 /* Internal About page captured from alibabaei.info/about.html. */
 .about-page{padding-top:64px;background:var(--background);color:var(--foreground)}
 .about-intro{max-width:1200px;margin:0 auto}
@@ -230,3 +239,6 @@
 .unified-footer-brand{display:flex;flex-direction:column;gap:var(--ds-space-4)}.unified-footer-brand strong{font-family:var(--heading);font-size:var(--ds-type-footer-name-size);line-height:var(--ds-type-footer-name-leading);font-weight:var(--ds-font-weight-semibold);letter-spacing:-.055em}.unified-footer-brand span{color:var(--ds-color-text-on-dark-secondary);font-size:var(--ds-type-footer-meta-size);line-height:1.5}
 .unified-footer-meta{display:flex;flex-direction:column;align-items:flex-start;gap:var(--ds-space-5)}.unified-footer-meta a,.unified-footer-meta small{color:var(--ds-color-text-on-dark-secondary);font-size:var(--ds-type-footer-meta-size);line-height:var(--ds-type-footer-meta-leading)}.unified-footer-meta nav{display:flex;flex-wrap:wrap;gap:var(--ds-footer-gap)}.unified-footer-meta nav a{color:var(--ds-color-text-on-dark);font-size:var(--ds-type-footer-meta-size)}.unified-footer-meta a:hover{color:var(--accent)}
 @media(max-width:767px){.unified-footer{flex-direction:column;align-items:flex-start;gap:var(--ds-footer-gap-mobile);padding:var(--ds-footer-padding-block-mobile) var(--ds-gutter-mobile)}.unified-footer-brand{gap:var(--ds-space-3)}.unified-footer-brand strong{font-size:var(--ds-type-footer-name-size-mobile)}.unified-footer-brand span,.unified-footer-meta a,.unified-footer-meta small,.unified-footer-meta nav a{font-size:var(--ds-type-footer-meta-size-mobile)}.unified-footer-meta{gap:var(--ds-space-4)}.unified-footer-meta nav{gap:var(--ds-space-7)}}
+
+/* This must follow route and theme styles so all legacy effects use the active accent token. */
+@media (prefers-color-scheme: dark){.hero-scroll-layer{background:radial-gradient(circle at 0% 25%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 30%),radial-gradient(circle at 100% 100%,rgba(27,28,32,.85),transparent 35%)}}

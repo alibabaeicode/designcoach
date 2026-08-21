@@ -24,8 +24,8 @@ The visual position is intentionally restrained: editorial, monochrome, spacious
 | `--ds-color-surface-muted` | `#e9ebee` | Secondary surface | Low-emphasis panels and background contrast |
 | `--ds-color-ink` | `#0a0a0b` | Primary ink | Headings, body text, dark panels |
 | `--ds-color-ink-panel` | `#1a1a1b` | Secondary dark panel | Dark engagement card; do not use for all dark sections |
-| `--ds-color-accent` | `#2e5bff` | Action blue | Links, active numbers, selected pills, CTA, focus ring |
-| `--ds-color-accent-hover` | `#244be0` | Action hover | Hover only; never use as a default text color |
+| `--ds-color-accent` | `#1620f5` | Action blue | Links, active numbers, selected pills, CTA, focus ring |
+| `--ds-color-accent-hover` | `#1018cc` | Action hover | Hover only; never use as a default text color |
 | `--ds-color-feedback-error` | `#ff6b6b` | Validation feedback | Invalid field borders and form-level error feedback only |
 | `--ds-color-border` | `#cfd1d5` | Default rule | Grid rules, section borders, card borders |
 | `--ds-color-border-light` | `#e2e4e9` | Light rule | Header and low-contrast separators |
