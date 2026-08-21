@@ -39,9 +39,12 @@
 
   /* Typography */
   --ds-font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --ds-font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Temporary body-type trial. Segoe UI Light is used where it is installed;
+     macOS and iOS fall back to their native system UI face. */
+  --ds-font-body: "Segoe UI Light", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
   --ds-font-mono: "Space Grotesk", ui-monospace, monospace;
   --ds-font-weight-regular: 400;
+  --ds-font-weight-body: 300;
   --ds-font-weight-medium: 500;
   --ds-font-weight-semibold: 600;
   --ds-font-weight-bold: 700;
@@ -53,9 +56,9 @@
   --ds-type-display-md-leading: 1;
   --ds-type-heading-size: 40px;
   --ds-type-heading-leading: 1;
-  --ds-type-body-lg-size: 18px;
+  --ds-type-body-lg-size: 19px;
   --ds-type-body-lg-leading: 1.56;
-  --ds-type-body-md-size: 16px;
+  --ds-type-body-md-size: 17px;
   --ds-type-body-md-leading: 1.5;
   --ds-type-label-size: 12px;
   --ds-type-label-leading: 1.33;

@@ -88,6 +88,8 @@ Rules:
 - Never use letter spacing to fix a wrong font size or line height. Tracking is part of the role token.
 - For Persian pages, keep the same hierarchy but use Persian line-height overrides and validate every wrap at mobile width.
 
+> Temporary typography trial: body copy currently uses `Segoe UI Light` / `Segoe UI` at weight `300`, with the body scale raised by `1px` (`19px` large, `17px` medium on desktop). `Inter` remains the documented baseline and can be restored by reverting the dedicated trial commit.
+
 ### 2.3 Spacing
 
 The base unit is `4px`. Use the named scale in `src/design-tokens.css`:

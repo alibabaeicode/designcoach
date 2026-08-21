@@ -55,7 +55,7 @@
   --ease-inertia: cubic-bezier(0.76, 0, 0.24, 1);
 
   --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --font-body: "Segoe UI Light", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Space Grotesk", sans-serif;
 
   --container-max: 1200px;
@@ -1721,6 +1721,15 @@ html[lang="fa"] .form-footer {
 
 html[lang="fa"] .site-menu-links a {
   line-height: 1.35;
+}
+
+/* Temporary Segoe UI body trial. Persian remains KalamehWeb; display and
+   metadata remain Space Grotesk. */
+html:not([lang="fa"]) p,
+html:not([lang="fa"]) input,
+html:not([lang="fa"]) textarea {
+  font-family: var(--font-body);
+  font-weight: 300;
 }
 
 /* System dark mode for the static English and Persian entry points. The
