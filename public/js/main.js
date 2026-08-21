@@ -2,9 +2,9 @@
 
 /**
  * Each booking <form> posts to its own `action` URL — the Formspree
- * endpoint at https://formspree.io/f/myeggnpv (set on the <form> in
- * index.html and book.html). Formspree requires the first submission
- * to a new form to be confirmed by email before it starts delivering.
+ * endpoint at https://formspree.io/f/xbgrwqyy (set on the <form> in
+ * index.html and book.html). Server-side Formspree errors are surfaced
+ * to the visitor when a request cannot be accepted.
  *
  * Lenis (loaded via CDN in each HTML file, before this script) gives
  * the whole site smoother, weighted scrolling instead of the browser
@@ -244,17 +244,19 @@ function initBookingForms() {
         headers: { Accept: "application/json" },
         body: new FormData(form),
       })
-        .then((res) => {
+        .then(async (res) => {
           if (res.ok) {
             form.hidden = true;
             success.classList.add("is-visible");
           } else {
-            throw new Error("Request failed");
+            const payload = await res.json().catch(() => null);
+            throw new Error(payload?.errors?.at(0)?.message || "Request failed");
           }
         })
-        .catch(() => {
-          errorBox.textContent =
-            wrapper.dataset.networkErrorMessage ||
+        .catch((error) => {
+          errorBox.textContent = error instanceof Error && error.message !== "Request failed"
+            ? error.message
+            : wrapper.dataset.networkErrorMessage ||
             "Something went wrong sending this — please email alibabaeinote@gmail.com directly instead.";
           errorBox.classList.add("is-visible");
         })

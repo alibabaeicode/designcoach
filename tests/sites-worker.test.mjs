@@ -99,7 +99,7 @@ test("uses Formspree with inline field validation and a locked success state", a
   const persianBookingPage = await readFile(new URL("../public/fa/index.html", import.meta.url), "utf8");
   const bookingScript = await readFile(new URL("../public/js/main.js", import.meta.url), "utf8");
 
-  assert.match(app, /const formspreeEndpoint = "https:\/\/formspree\.io\/f\/myeggnpv"/);
+  assert.match(app, /const formspreeEndpoint = "https:\/\/formspree\.io\/f\/xbgrwqyy"/);
   assert.match(app, /fetch\(formspreeEndpoint, \{ method: "POST"/);
   assert.match(app, /className="contact-field-error"/);
   assert.match(app, /className="contact-form-success"/);
@@ -112,6 +112,7 @@ test("uses Formspree with inline field validation and a locked success state", a
     assert.match(page, /name="org" type="text" required/);
   }
   assert.match(bookingScript, /if \(topicsGroup && topicsGroup\.dataset\.requiredMessage\)/);
+  assert.match(bookingScript, /payload\?\.errors\?\.at\(0\)\?\.message/);
   assert.doesNotMatch(bookingScript, /const resetBtn = wrapper\.querySelector\("\.btn-reset"\)/);
 });
 
