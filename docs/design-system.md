@@ -25,7 +25,7 @@ The visual position is intentionally restrained: editorial, monochrome, spacious
 | `--ds-color-ink` | `#0a0a0b` | Primary ink | Headings, body text, dark panels |
 | `--ds-color-ink-panel` | `#1a1a1b` | Secondary dark panel | Dark engagement card; do not use for all dark sections |
 | `--ds-color-accent` | `#1620f5` | Action blue | Links, active numbers, selected pills, CTA, focus ring |
-| `--ds-color-accent-hover` | `#1018cc` | Action hover | Hover only; never use as a default text color |
+| `--ds-color-accent-hover` | `var(--ds-color-accent)` | Action hover | The same brand blue; hover feedback comes from motion, not a second blue |
 | `--ds-color-feedback-error` | `#ff6b6b` | Validation feedback | Invalid field borders and form-level error feedback only |
 | `--ds-color-border` | `#cfd1d5` | Default rule | Grid rules, section borders, card borders |
 | `--ds-color-border-light` | `#e2e4e9` | Light rule | Header and low-contrast separators |
@@ -40,6 +40,7 @@ Rules:
 
 - Never add a new grey by eye. Choose the closest semantic text or border token.
 - Blue communicates action or state, not decoration. One primary action should be visually dominant in a region.
+- `#1620f5` is the only blue value in the system. Hover, glow, pale surfaces and success feedback may only use transparency or `color-mix()` derived from this token; do not introduce blue shades as separate values.
 - Dark panels use `--ds-color-ink-panel` when they are a card and `--ds-color-ink` when they are a full section or overlay.
 - Text opacity is part of the hierarchy. Do not use a lighter colour to compensate for an incorrect font size.
 - Contrast must remain readable in both light and dark surfaces; use the `on-dark` tokens rather than reusing light-page tokens.

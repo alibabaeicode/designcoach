@@ -139,6 +139,22 @@ test("keeps the shared footer governed by documented design tokens", async () =>
   assert.match(contentModel, /## 7\. Shared footer content contract/);
 });
 
+test("uses one documented brand blue across dynamic and static pages", async () => {
+  const tokens = await readFile(new URL("../src/design-tokens.css", import.meta.url), "utf8");
+  const staticStyles = await readFile(new URL("../public/css/style.css", import.meta.url), "utf8");
+  const loop = await readFile(new URL("../public/js/system-loop.js", import.meta.url), "utf8");
+  const designSystem = await readFile(new URL("../docs/design-system.md", import.meta.url), "utf8");
+
+  assert.match(tokens, /--ds-color-accent: #1620f5/);
+  assert.match(tokens, /--ds-color-accent-hover: var\(--ds-color-accent\)/);
+  assert.match(staticStyles, /--accent: #1620F5/);
+  assert.match(staticStyles, /--accent-hover: var\(--accent\)/);
+  assert.match(staticStyles, /--accent-active: var\(--accent\)/);
+  assert.match(loop, /accent: '#1620F5'/);
+  assert.match(designSystem, /#1620f5` is the only blue value in the system/);
+  assert.doesNotMatch(staticStyles, /#2E5BFF|#1E4AB8|#1538A0|#E7ECFF|rgba\(46,\s*91,\s*255/);
+});
+
 test("ships a focused Persian header and one shared footer system", async () => {
   const persianPage = await readFile(new URL("../dist/client/fa/index.html", import.meta.url), "utf8");
   const bookingPage = await readFile(new URL("../dist/client/book.html", import.meta.url), "utf8");

@@ -4,7 +4,7 @@
    Tailwind CSS + a generated design-system spec (colors, type scale,
    spacing, radius, shadows) — not a visual approximation. Sharp corners
    everywhere except pill buttons; no card shadows by default; one accent
-   blue (#2E5BFF) reserved for buttons/links/active states only.
+   blue (#1620F5) reserved for buttons/links/active states only.
    See DESIGN-SYSTEM.md for the full sourcing/rationale.
    ========================================================================== */
 
@@ -18,10 +18,10 @@
   --muted-88: rgba(10, 10, 11, 0.88);
   --muted-40: rgba(10, 10, 11, 0.4);
   --muted-30: rgba(10, 10, 11, 0.3);
-  --accent: #2E5BFF;
-  --accent-hover: #1E4AB8;
-  --accent-active: #1538A0;
-  --accent-pale: #E7ECFF;
+  --accent: #1620F5;
+  --accent-hover: var(--accent);
+  --accent-active: var(--accent);
+  --accent-pale: color-mix(in srgb, var(--accent) 12%, transparent);
   --dark-muted-1: rgba(248, 249, 250, 0.95);
   --dark-muted-2: rgba(248, 249, 250, 0.7);
   --dark-muted-3: rgba(248, 249, 250, 0.88);
@@ -1360,8 +1360,8 @@ a.meta-right:hover { color: var(--accent); text-decoration: underline; }
   justify-content: flex-start;
   gap: 22px;
   padding: 40px 48px;
-  background: rgba(46, 91, 255, 0.1);
-  border: 1px solid rgba(46, 91, 255, 0.3);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
 }
 .booking-success.is-visible { display: flex; }
 
@@ -1737,7 +1737,7 @@ html[lang="fa"] .site-menu-links a {
     --muted-88: rgba(248, 249, 250, 0.88);
     --muted-40: rgba(248, 249, 250, 0.42);
     --muted-30: rgba(248, 249, 250, 0.30);
-    --accent-pale: rgba(46, 91, 255, 0.20);
+    --accent-pale: color-mix(in srgb, var(--accent) 20%, transparent);
     --border-soft: #565861;
     --border-light: #2D2F35;
   }
