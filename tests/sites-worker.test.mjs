@@ -92,6 +92,12 @@ test("keeps all statistics visually identical by default", async () => {
   assert.doesNotMatch(stylesheet, /\.stat:last-child\{[^}]*background/);
 });
 
+test("keeps booking form submission controls free of a duplicate separator", async () => {
+  const stylesheet = await readFile(new URL("../public/css/style.css", import.meta.url), "utf8");
+
+  assert.doesNotMatch(stylesheet, /(^|\n)\.form-footer\s*\{[^}]*border-top/);
+});
+
 test("uses Formspree with inline field validation and a locked success state", async () => {
   const app = await readFile(new URL("../src/App.jsx", import.meta.url), "utf8");
   const stylesheet = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
