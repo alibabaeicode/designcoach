@@ -44,6 +44,27 @@ Rules:
 - Text opacity is part of the hierarchy. Do not use a lighter colour to compensate for an incorrect font size.
 - Contrast must remain readable in both light and dark surfaces; use the `on-dark` tokens rather than reusing light-page tokens.
 
+### 2.1.1 System dark mode
+
+The site follows the visitor's operating-system preference through `prefers-color-scheme`. There is no manual theme switch in version 1.
+
+| Theme layer | Light mode | Dark mode | Rule |
+| --- | --- | --- | --- |
+| Canvas | `#f8f9fa` | `#0a0a0b` | The full page surface follows the system preference. |
+| Raised surface | `#ffffff` | `#151619` | Cards, forms and static-page panels retain a small but visible lift from the canvas. |
+| Soft surface | `#f1f2f4` | `#1b1c20` | Hover and low-emphasis bands keep the same hierarchy. |
+| Primary reading ink | `#0a0a0b` | `#f8f9fa` | Body and heading contrast changes semantically, not by filter inversion. |
+| Rules | `#cfd1d5` | `#44464d` | The editorial 1px grid remains quieter than content. |
+| Inverse surface | `#0a0a0b` | `#0a0a0b` | Menu, contact and shared footer remain deliberately dark in both modes. |
+
+Dark-mode rules:
+
+- Do not invert images, the portrait brand mark, or the accent blue.
+- Keep the blue accent for action, selected state and focus. It is never used to compensate for weak dark-surface contrast.
+- Use `--ds-color-surface-inverse` for intentionally dark regions. Do not use `--ds-color-ink` as a background, because `ink` is the current page-reading colour and changes with the active theme.
+- All supporting copy switches to the matching semantic text token. Raw light-page `rgba(10, 10, 11, ...)` values are not permitted in new work.
+- Validate both themes at wide desktop and `390px`, including keyboard focus, form validation, menu overlay, direct-route loading and shared-footer parity.
+
 ### 2.2 Typography
 
 | Role | Family | Desktop | Mobile | Weight / leading |

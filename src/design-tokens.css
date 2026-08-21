@@ -14,6 +14,7 @@
   --ds-color-surface-muted: #e9ebee;
   --ds-color-ink: #0a0a0b;
   --ds-color-ink-panel: #1a1a1b;
+  --ds-color-surface-inverse: #0a0a0b;
   --ds-color-accent: #2e5bff;
   --ds-color-accent-hover: #244be0;
   --ds-color-feedback-error: #ff6b6b;
@@ -112,4 +113,26 @@
   --ds-duration-reveal: 700ms;
   --ds-duration-menu: 600ms;
   --ds-distance-reveal: 40px;
+}
+
+/* System dark mode. Primitives stay role-based; only semantic page surfaces
+   and reading hierarchy switch. Inverse surfaces remain intentionally dark. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --ds-color-canvas: #0a0a0b;
+    --ds-color-surface: #151619;
+    --ds-color-surface-soft: #1b1c20;
+    --ds-color-surface-muted: #24252a;
+    --ds-color-ink: #f8f9fa;
+    --ds-color-ink-panel: #1a1a1b;
+    --ds-color-border: #44464d;
+    --ds-color-border-light: #2d2f35;
+    --ds-color-border-soft: #565861;
+    --ds-color-text-secondary: rgba(248, 249, 250, 0.72);
+    --ds-color-text-muted: rgba(248, 249, 250, 0.6);
+    --ds-color-text-subtle: rgba(248, 249, 250, 0.42);
+    --ds-color-text-disabled: rgba(248, 249, 250, 0.3);
+    --ds-color-border-subtle: rgba(248, 249, 250, 0.18);
+  }
 }
