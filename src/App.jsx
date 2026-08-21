@@ -26,7 +26,7 @@ const consultingSelection = [
   ["Persis Pooya Data", "Enterprise ERP", "Usability audit and redesign direction for an enterprise ERP system."],
   ["Quera", "Edtech", "Design research and customer journey analysis."],
   ["Pezeshk Khoob / Noban", "Healthtech", "Usability audit and redesign of the doctor-appointment booking journey."],
-  ["Roomvu", "Real estate", "Heatmap-driven redesign that lifted subscription renewal."],
+  ["Roomvu", "Real estate · 2018 — 2020", "Led a heatmap-driven review and redesign of the subscription journey, translating behavioural evidence into product changes that lifted subscription renewal."],
 ];
 const teachingMentoring = [
   ["Amanj Academy", "2018 — Present", "Architected a problem-first product design curriculum and delivered five in-person and 17 online cohorts — the longest-running program of its kind in the market."],
