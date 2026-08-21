@@ -69,9 +69,10 @@ The service page must not become a generic list of capabilities. Each track need
 About
 ├── Intro: point of view + scope of experience
 ├── Tools: working vocabulary, not a skills-bar rating
+├── Teaching & mentoring: institution / period / contribution
 ├── Consulting selection: client / sector / result
 ├── Product design experience: organisation / period / role
-├── Speaking & panels: year / contribution
+├── Speaking & recognition: year / contribution or distinction
 ├── Writing: year / title / thesis / external article
 └── Footer: identity + channels
 ```

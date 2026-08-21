@@ -27,6 +27,14 @@ const consultingSelection = [
   ["Quera", "Edtech", "Design research and customer journey analysis."],
   ["SeramPakhsh", "Distribution", "Embedded user-centred practice and established research as a standing design responsibility."],
   ["Pezeshk Khoob / Noban", "Healthtech", "Usability audit and redesign of the doctor-appointment booking journey."],
+  ["Roomvu", "Real estate", "Heatmap-driven redesign that lifted subscription renewal."],
+];
+const teachingMentoring = [
+  ["Amanj Academy", "2018 — Present", "Architected a problem-first product design curriculum and delivered five in-person and 17 online cohorts — the longest-running program of its kind in the market."],
+  ["Rahnema College", "2017 — 2021", "Designed four product design programs and taught interaction and visual design alongside an in-house consumer-product team."],
+  ["Universities", "2017 — 2021", "Guest lecturer and thesis juror across six universities, teaching UI and interaction design to BA and MA students."],
+  ["Career Path Design & Deframe", "2023 — Present", "Founded independent coaching and problem-solving programs; Deframe has run with Divar, BimeBazar and Aparat."],
+  ["Accelerators & academies", "2018 — 2023", "Design mentor and instructor across Source/Sintech, GreenTech, Noafarinan, Product Factory, Doosent, Anso and Target."],
 ];
 const productExperience = [
   ["Rahnema", "2017 — 2021", "UI/UX Designer — Beeptunes music streaming, Rahnema College website and LMS."],
@@ -36,11 +44,11 @@ const productExperience = [
   ["Tarashe Pardaz Homa", "2005 — 2010", "Web & Graphic Designer — client websites, financial security and e-learning software interfaces."],
 ];
 const speakingPanels = [
-  ["2025", "Scientific chair, UX Shiraz Conference."],
-  ["2018", "Speaker, UserX2018 seminar."],
-  ["2019", "Workshop mentor, UserX2019 seminar."],
-  ["2019", "Panelist, Visionary Conference."],
-  ["2019", "Panelist, IDF (Summer 2019)."],
+  ["2025", "Scientific Committee Chair, UserX Shiraz Conference."],
+  ["2018 — 2019", "Speaker at UserX and workshop lead for UI design."],
+  ["2019", "Panelist at Visionary Conference and the IDF panel."],
+  ["2016", "Winner, Iran Web Festival, for Alounak."],
+  ["2016", "Taninno exhibited at GITEX Dubai and CeBIT Hannover."],
 ];
 const writingArticles = [
   ["2026", "The Context Trap: Why Design Frameworks Fail in the Real World", "Design frameworks like Design Thinking promise a fixed path, but most organisations don't match the ideal case they assume. This piece maps the real environments design operates in and argues the outcome matters more than the process used to reach it.", "https://medium.com/design-bootcamp/the-context-trap-why-design-frameworks-fail-in-the-real-world-ce8dd202be11"],
@@ -263,21 +271,25 @@ function AboutPage() {
         <img className="about-logo" src={logoUrl} alt="Ali Babaei" />
         <span className="eyebrow">About</span>
         <h1>Ali Babaei</h1>
-        <p>Design mentor and UX consultant with 20+ years in digital product design and eight years spent building designers and design practices. Architect and lead instructor of 40+ product design cohorts across academies, universities and startup accelerators, and advisor to 15+ product teams on usability, research practice and design process.</p>
-        <p>Experience spans streaming, fintech, e-commerce, healthtech, edtech and enterprise software. My coaching style is contextual and action-oriented: turning abstract design principles into decisions teams can ship.</p>
+        <p>Design mentor and UX consultant with 20+ years in digital product design and eight years spent building designers and design practices. Architect and lead instructor of 40+ product design cohorts across academies, six universities and startup accelerators, and advisor to 20+ product teams on usability, research practice and design process.</p>
+        <p>Experience spans streaming, fintech, e-commerce, healthtech, edtech and enterprise software. My coaching style is contextual rather than generic: reframing the brief by asking the root question, then turning design principles into decisions teams can ship.</p>
         <div className="about-tools"><span className="eyebrow">Tools</span><span>Figma · FigJam · Clarity · Maze · Framer · Linear · Loom · Miro · Notion · Jira</span></div>
       </div>
     </section>
+
+    <AboutRowSection title="Teaching & mentoring" meta="2017 — Present">
+      <div className="about-cells">{teachingMentoring.map(([name, years, detail]) => <article className="about-cell" data-cursor="text" key={name}><div className="about-client-line"><h3>{name}</h3><span>{years}</span></div><p>{detail}</p></article>)}</div>
+    </AboutRowSection>
 
     <AboutRowSection title="Consulting selection" meta="2017 — Present">
       <div className="about-cells">{consultingSelection.map(([name, sector, detail]) => <article className="about-cell" data-cursor="text" key={name}><div className="about-client-line"><h3>{name}</h3><span>{sector}</span></div><p>{detail}</p></article>)}</div>
     </AboutRowSection>
 
-    <AboutRowSection title="Product design experience" meta="2005 — 2024">
+    <AboutRowSection title="Product design experience" meta="2005 — 2021">
       <div className="about-cells">{productExperience.map(([name, years, detail]) => <article className="about-cell" data-cursor="text" key={name}><div className="about-client-line"><h3>{name}</h3><span>{years}</span></div><p>{detail}</p></article>)}</div>
     </AboutRowSection>
 
-    <AboutRowSection title="Speaking & panels" meta="2018 — 2025">
+    <AboutRowSection title="Speaking & recognition" meta="2016 — 2025">
       <div className="about-cells">{speakingPanels.map(([year, detail]) => <article className="about-cell" data-cursor="text" key={`${year}-${detail}`}><span className="about-sector">{year}</span><p>{detail}</p></article>)}</div>
     </AboutRowSection>
 

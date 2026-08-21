@@ -81,8 +81,8 @@ test("keeps the brand logo on a stable public asset URL", async () => {
 test("keeps the English About logo prominent above the intro", async () => {
   const stylesheet = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
 
-  assert.match(stylesheet, /\.about-logo\{width:128px;height:128px/);
-  assert.match(stylesheet, /\.about-logo\{width:96px;height:96px/);
+  assert.match(stylesheet, /\.about-logo\{width:180px;height:180px/);
+  assert.match(stylesheet, /\.about-logo\{width:120px;height:120px/);
 });
 
 test("keeps all statistics visually identical by default", async () => {
