@@ -73,22 +73,24 @@ Dark-mode rules:
 | Display L | Space Grotesk | `72px` | `36–45px` | 600 / `1` |
 | Section heading | Space Grotesk | `40–60px` | `36–40px` | 600 / `1` |
 | Card heading | Space Grotesk | `30px` | `24–27px` | 600 / `1.1–1.3` |
-| Body large | Inter | `18px` | `16px` | 400 / `1.5–1.56` |
-| Body medium | Inter | `16px` | `14–16px` | 400 / `1.5` |
+| Body lead | Segoe UI Light → Selawik | `19px` | `17px` | 300 / `1.56` |
+| Body supporting | Segoe UI Light → Selawik | `17px` | `16px` | 300 / `1.5` |
+| Body compact | Segoe UI Light → Selawik | `15px` | `15px` | 300 / `1.47` |
+| Form control | Segoe UI Light → Selawik | `18px` | `16px` | 300 / `1.6` |
 | Label / metadata | Space Grotesk | `10–12px` | `9–12px` | 400–500 / uppercase, tracked |
 | Mono-like utility | Space Grotesk | `10–12px` | `9–11px` | 400–500 / tracked |
 
 Rules:
 
 - `Space Grotesk` is for display, headings, numbers, navigation labels, metadata, and utility text.
-- `Inter` is for paragraphs, descriptions, form input, and long reading text.
+- `Segoe UI Light` is preferred for Latin paragraphs, descriptions, form input and long reading text. The self-hosted `Selawik` fallback is used whenever Segoe UI is unavailable, giving the site a consistent Segoe-like reading face across Windows, macOS, iOS and Linux.
+- Assign non-heading copy by semantic role, never by a one-off font size: **lead** for primary explanatory copy, **supporting** for descriptions and informative labels, **compact** for subordinate detail, and **control** for editable input. Labels and metadata remain compact Space Grotesk roles so they never compete with content.
 - Use one `h1` per page. Major page regions use `h2`; cards and individual records use `h3`.
 - Eyebrows are structural labels, not replacement headings: `01 / Engagements`, `02 / Track record`, etc.
 - Uppercase is reserved for navigation and metadata. Sentence case is used for explanatory copy.
 - Never use letter spacing to fix a wrong font size or line height. Tracking is part of the role token.
 - For Persian pages, keep the same hierarchy but use Persian line-height overrides and validate every wrap at mobile width.
-
-> Temporary typography trial: body copy currently uses `Segoe UI Light` / `Segoe UI` at weight `300`, with the body scale raised by `1px` (`19px` large, `17px` medium on desktop). `Inter` remains the documented baseline and can be restored by reverting the dedicated trial commit.
+- `Selawik` Light and Regular are bundled in `public/assets/fonts/` under the SIL Open Font License 1.1; the license is retained as `LICENSE-SELW-OFL.txt` alongside the font files.
 
 ### 2.3 Spacing
 

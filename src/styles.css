@@ -231,9 +231,17 @@
 .unified-footer-meta{display:flex;flex-direction:column;align-items:flex-start;gap:var(--ds-space-5)}.unified-footer-meta a,.unified-footer-meta small{color:var(--ds-color-text-on-dark-secondary);font-size:var(--ds-type-footer-meta-size);line-height:var(--ds-type-footer-meta-leading)}.unified-footer-meta nav{display:flex;flex-wrap:wrap;gap:var(--ds-footer-gap)}.unified-footer-meta nav a{color:var(--ds-color-text-on-dark);font-size:var(--ds-type-footer-meta-size)}.unified-footer-meta a:hover{color:var(--accent)}
 @media(max-width:767px){.unified-footer{flex-direction:column;align-items:flex-start;gap:var(--ds-footer-gap-mobile);padding:var(--ds-footer-padding-block-mobile) var(--ds-gutter-mobile)}.unified-footer-brand{gap:var(--ds-space-3)}.unified-footer-brand strong{font-size:var(--ds-type-footer-name-size-mobile)}.unified-footer-brand span,.unified-footer-meta a,.unified-footer-meta small,.unified-footer-meta nav a{font-size:var(--ds-type-footer-meta-size-mobile)}.unified-footer-meta{gap:var(--ds-space-4)}.unified-footer-meta nav{gap:var(--ds-space-7)}}
 
-/* Temporary Segoe UI body trial. Display, navigation and metadata remain
-   Space Grotesk; only reading text and inputs become lighter and one step larger. */
+/* Cross-platform reading type. Display, navigation and metadata remain
+   Space Grotesk; Selawik supplies the Segoe-like body face on non-Windows OSs. */
+@font-face{font-family:"Selawik";src:url("/assets/fonts/selawkl.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Selawik";src:url("/assets/fonts/selawk.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 p,.contact-form input,.contact-form textarea{font-family:var(--body);font-weight:var(--ds-font-weight-body)}
-.hero-center p,.engagement-card p,.contact-copy>p,.contact-header>p,.services-hero p,.about-copy p{font-size:var(--ds-type-body-lg-size);line-height:var(--ds-type-body-lg-leading)}
-.split-heading p,.teaching-row p,.about-cell p,.article-card p{font-size:var(--ds-type-body-md-size);line-height:var(--ds-type-body-md-leading)}
-@media(max-width:767px){.hero-center p,.engagement-card p,.contact-copy>p,.contact-header>p,.services-hero p,.about-copy p{font-size:17px}.split-heading p,.teaching-row p,.about-cell p,.article-card p{font-size:15px}}
+/* Lead: primary explanatory copy beside or beneath a display heading. */
+.hero-center p,.engagement-card p,.contact-copy>p,.contact-header>p,.services-hero p,.about-copy p,.contact-form-success p{font-size:var(--ds-type-body-lg-size);line-height:var(--ds-type-body-lg-leading)}
+/* Supporting: descriptions, labels that carry information, and card copy. */
+.split-heading p,.teaching-row p,.about-cell p,.article-card p,.stat>span:last-child,.contact-points>div{font-size:var(--ds-type-body-md-size);line-height:var(--ds-type-body-md-leading)}
+/* Compact: secondary detail that should not compete with its parent item. */
+.mini-list small,.process-card p{font-size:var(--ds-type-body-sm-size);line-height:var(--ds-type-body-sm-leading)}
+/* Controls remain deliberately larger than supporting copy for legibility. */
+.contact-form input,.contact-form textarea{font-size:var(--ds-type-control-size);line-height:var(--ds-type-control-leading)}
+@media(max-width:767px){.hero-center p,.engagement-card p,.contact-copy>p,.contact-header>p,.services-hero p,.about-copy p,.contact-form-success p{font-size:var(--ds-type-body-lg-size-mobile)}.split-heading p,.teaching-row p,.about-cell p,.article-card p,.stat>span:last-child,.contact-points>div{font-size:var(--ds-type-body-md-size-mobile)}.mini-list small,.process-card p{font-size:var(--ds-type-body-sm-size-mobile)}.contact-form input,.contact-form textarea{font-size:var(--ds-type-control-size-mobile)}}
