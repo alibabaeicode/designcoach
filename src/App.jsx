@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 const logoUrl = "/assets/ali-babaei-logo-v2.png?rev=20260821";
-const formspreeEndpoint = "https://formspree.io/f/myeggnpv";
+const formspreeEndpoint = "https://formspree.io/f/xbgrwqyy";
 
 const companies = ["Telewebion", "Behsazan Mellat", "Skyroom", "BimeBazar", "BeAndam", "Persis Pooya Data", "Quera", "Seram Pakhsh", "Pezeshk Khoob", "Noban", "Sanjagh", "Ankuy"];
 const focusAreas = ["Conversion", "Retention", "Usability audit", "Team coaching", "Design thinking workshop", "Hiring & team growth"];
@@ -234,10 +234,13 @@ function Contact() {
     const form = event.currentTarget;
     try {
       const response = await fetch(formspreeEndpoint, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) });
-      if (!response.ok) throw new Error("Formspree request failed");
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        throw new Error(payload?.errors?.at(0)?.message || "Formspree could not accept this request. Please try again or email me directly.");
+      }
       setSubmitted(true);
-    } catch {
-      setSubmitError("Something went wrong sending this — please email alibabaeinote@gmail.com directly instead.");
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Something went wrong sending this — please email alibabaeinote@gmail.com directly instead.");
     } finally {
       setIsSubmitting(false);
     }
