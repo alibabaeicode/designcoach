@@ -178,7 +178,7 @@ The UI is implemented in the `App` module, but each named surface below is a vis
 | `Header` | `homeHref`, `scrolled`, `onOpen`, `onClose` | Header tokens, navigation, scroll state |
 | `MenuOverlay` | `onClose`, `closing`, `onExited` | Navigation item model, menu motion tokens |
 | `Hero` | Page intro content and primary/secondary actions | Display type, canvas, action blue |
-| `Stats` | Value/label pairs | Number type, rule grid, uniform default surfaces; accent line on hover only |
+| `Stats` | Value/label pairs | Number type, rule grid, uniform default surfaces; value is top-anchored independently of label wrapping; accent line on hover only |
 | `Engagements` | Two service-outcome cards | Light/dark surfaces, outcome hierarchy |
 | `Teaching` | Track-record row items | Editorial grid, hover accent |
 | `Process` | Ordered step items | Number state, three-column grid |

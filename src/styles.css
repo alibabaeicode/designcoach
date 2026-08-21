@@ -240,5 +240,9 @@
 .unified-footer-meta{display:flex;flex-direction:column;align-items:flex-start;gap:var(--ds-space-5)}.unified-footer-meta a,.unified-footer-meta small{color:var(--ds-color-text-on-dark-secondary);font-size:var(--ds-type-footer-meta-size);line-height:var(--ds-type-footer-meta-leading)}.unified-footer-meta nav{display:flex;flex-wrap:wrap;gap:var(--ds-footer-gap)}.unified-footer-meta nav a{color:var(--ds-color-text-on-dark);font-size:var(--ds-type-footer-meta-size)}.unified-footer-meta a:hover{color:var(--accent)}
 @media(max-width:767px){.unified-footer{flex-direction:column;align-items:flex-start;gap:var(--ds-footer-gap-mobile);padding:var(--ds-footer-padding-block-mobile) var(--ds-gutter-mobile)}.unified-footer-brand{gap:var(--ds-space-3)}.unified-footer-brand strong{font-size:var(--ds-type-footer-name-size-mobile)}.unified-footer-brand span,.unified-footer-meta a,.unified-footer-meta small,.unified-footer-meta nav a{font-size:var(--ds-type-footer-meta-size-mobile)}.unified-footer-meta{gap:var(--ds-space-4)}.unified-footer-meta nav{gap:var(--ds-space-7)}}
 
+/* Statistic values use a fixed top anchor; label wrapping must not move them. */
+.stats-grid .stat{justify-content:flex-start;padding-top:104px}
+@media(max-width:767px){.stats-grid .stat{padding-top:80px}}
+
 /* This must follow route and theme styles so all legacy effects use the active accent token. */
 @media (prefers-color-scheme: dark){.hero-scroll-layer{background:radial-gradient(circle at 0% 25%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 30%),radial-gradient(circle at 100% 100%,rgba(27,28,32,.85),transparent 35%)}}

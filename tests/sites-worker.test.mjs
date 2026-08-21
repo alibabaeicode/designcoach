@@ -90,6 +90,8 @@ test("keeps all statistics visually identical by default", async () => {
 
   assert.match(stylesheet, /\.stat:last-child\{border-right:0\}/);
   assert.doesNotMatch(stylesheet, /\.stat:last-child\{[^}]*background/);
+  assert.match(stylesheet, /\.stats-grid \.stat\{justify-content:flex-start;padding-top:104px\}/);
+  assert.match(stylesheet, /@media\(max-width:767px\)\{\.stats-grid \.stat\{padding-top:80px\}\}/);
 });
 
 test("keeps booking form submission controls free of a duplicate separator", async () => {
