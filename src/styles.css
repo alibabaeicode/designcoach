@@ -167,6 +167,10 @@
 .hero-scroll-layer{background:radial-gradient(circle at 0% 25%,color-mix(in srgb,var(--accent) 11%,transparent),transparent 30%),radial-gradient(circle at 100% 100%,rgba(225,227,231,.55),transparent 35%)}
 @media (prefers-color-scheme: dark){.hero-scroll-layer{background:radial-gradient(circle at 0% 25%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 30%),radial-gradient(circle at 100% 100%,rgba(27,28,32,.85),transparent 35%)}}
 
+/* Keep the statistics close to the hero without merging the two sections. */
+.stats-section{padding:64px 48px 96px}
+@media(max-width:767px){.stats-section{padding:48px 24px 64px}}
+
 /* Internal About page captured from alibabaei.info/about.html. */
 .about-page{padding-top:64px;background:var(--background);color:var(--foreground)}
 .about-intro{max-width:1200px;margin:0 auto}

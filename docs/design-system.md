@@ -100,6 +100,7 @@ Contract:
 - Component internals normally use `8 / 12 / 16 / 24 / 32px`.
 - Card and row padding is normally `24 / 32 / 40 / 48px` depending on density.
 - Section breathing room is normally `72 / 96 / 128px` on desktop and `48 / 64 / 80px` on mobile.
+- The statistics section begins after a deliberate `64px` desktop or `48px` mobile gap from the hero; it remains a separate editorial section rather than an extension of the hero.
 - The global mobile gutter is `24px`; the desktop page gutter is `48px`; the inner section gutter is `40px`.
 - A `1px` rule is structural and should be used instead of a shadow to separate editorial regions.
 - The value `404px` is not a design token and must not be introduced. It was removed as an old footer-spacing workaround.
