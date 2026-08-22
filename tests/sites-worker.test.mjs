@@ -88,6 +88,8 @@ test("keeps the English About logo prominent above the intro", async () => {
 test("keeps all statistics visually identical by default", async () => {
   const stylesheet = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
 
+  assert.match(stylesheet, /\.stats-section\{padding:96px 48px;background:var\(--background\)\}/);
+  assert.doesNotMatch(stylesheet, /\.stats-section\{[^}]*border-top/);
   assert.match(stylesheet, /\.stat:last-child\{border-right:0\}/);
   assert.doesNotMatch(stylesheet, /\.stat:last-child\{[^}]*background/);
   assert.match(stylesheet, /\.stats-grid \.stat\{justify-content:flex-start;padding-top:104px\}/);
